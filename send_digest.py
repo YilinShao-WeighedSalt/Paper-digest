@@ -1,41 +1,18 @@
 #!/usr/bin/env python3
-"""Build and send the weekly digest email from a JSON file of analyzed papers.
+"""Build the weekly digest HTML from a JSON file of analyzed papers.
 
 Usage:
-    python send_digest.py digest.json                    # Send email
-    python send_digest.py digest.json --preview          # Save HTML locally
-    python send_digest.py digest.json --preview --open   # Save and open in browser
+    python send_digest.py digest.json              # Print HTML to stdout
+    python send_digest.py digest.json --save       # Save HTML to digests/ folder
 
-Expected JSON format (list of objects):
-    [
-        {
-            "title": "...",
-            "authors": ["..."],
-            "venue": "...",
-            "year": 2025,
-            "citations": 42,
-            "url": "...",
-            "pdf_url": "...",
-            "domain": "AI/ML",
-            "analysis": "### The Problem\\n..."
-        }
-    ]
+Expected JSON format: list of paper objects with an "analysis" field.
 """
 
 import json
-import os
 import re
-import smtplib
-import subprocess
 import sys
 from datetime import datetime
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from pathlib import Path
-
-from dotenv import load_dotenv
-
-load_dotenv(Path(__file__).parent / ".env")
 
 DOMAIN_COLORS = {
     "Robotics": "#e74c3c",
@@ -140,69 +117,30 @@ def build_html(papers):
 </body></html>"""
 
 
-def send_email(html, papers):
-    sender = os.getenv("EMAIL_SENDER", "")
-    password = os.getenv("EMAIL_PASSWORD", "")
-    recipient = os.getenv("EMAIL_RECIPIENT", "")
-    smtp_host = os.getenv("EMAIL_SMTP_HOST", "smtp.gmail.com")
-    smtp_port = int(os.getenv("EMAIL_SMTP_PORT", "587"))
-
-    if not all([sender, password, recipient]):
-        print("ERROR: Email credentials not configured in .env", file=sys.stderr)
-        return False
-
-    date_str = datetime.now().strftime("%Y-%m-%d")
-    subject = f"Weekly Research Digest — {date_str}"
-
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = subject
-    msg["From"] = f"Paper Digest <{sender}>"
-    msg["To"] = recipient
-
-    plain = "\n\n".join(
-        f"#{i} {p['title']}\n{p.get('analysis', '')}"
-        for i, p in enumerate(papers, 1)
-    )
-    msg.attach(MIMEText(plain, "plain"))
-    msg.attach(MIMEText(html, "html"))
-
-    with smtplib.SMTP(smtp_host, smtp_port) as server:
-        server.starttls()
-        server.login(sender, password)
-        server.send_message(msg)
-
-    print(f"Email sent to {recipient}", file=sys.stderr)
-    return True
-
-
 def main():
     import argparse
 
     parser = argparse.ArgumentParser()
     parser.add_argument("json_file", help="Path to digest JSON")
-    parser.add_argument("--preview", action="store_true", help="Save HTML locally")
-    parser.add_argument("--open", action="store_true", help="Open preview in browser")
+    parser.add_argument("--save", action="store_true", help="Save to digests/ folder")
     args = parser.parse_args()
 
     with open(args.json_file) as f:
         papers = json.load(f)
 
     html = build_html(papers)
-    date_str = datetime.now().strftime("%Y%m%d")
 
-    if args.preview:
-        out = Path(__file__).parent / f"preview_{date_str}.html"
-        out.write_text(html)
-        print(f"Preview saved: {out}", file=sys.stderr)
-        if args.open:
-            subprocess.run(["open", str(out)])
-        return
-
-    if send_email(html, papers):
-        log_dir = Path(__file__).parent / "logs"
-        log_dir.mkdir(exist_ok=True)
-        (log_dir / f"digest_{date_str}.html").write_text(html)
-        (log_dir / f"digest_{date_str}.json").write_text(json.dumps(papers, indent=2))
+    if args.save:
+        date_str = datetime.now().strftime("%Y%m%d")
+        out_dir = Path(__file__).parent / "digests"
+        out_dir.mkdir(exist_ok=True)
+        html_path = out_dir / f"digest_{date_str}.html"
+        json_path = out_dir / f"digest_{date_str}.json"
+        html_path.write_text(html)
+        json_path.write_text(json.dumps(papers, indent=2))
+        print(html_path, file=sys.stderr)
+    else:
+        print(html)
 
 
 if __name__ == "__main__":
