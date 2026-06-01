@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Build the weekly digest HTML from a JSON file of analyzed papers.
+"""Build and optionally send the weekly digest email.
 
 Usage:
-    python send_digest.py digest.json              # Print HTML to stdout
-    python send_digest.py digest.json --save       # Save HTML to digests/ folder
+    python send_digest.py digest.json                          # Print HTML to stdout
+    python send_digest.py digest.json --save                   # Save to digests/ folder
+    python send_digest.py digest.json --send --to user@x.com   # Send via SMTP
 
-Expected JSON format: list of paper objects with an "analysis" field.
+SMTP credentials are read from environment variables:
+    EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_SMTP_HOST, EMAIL_SMTP_PORT
 """
 
 import json
+import os
 import re
+import smtplib
 import sys
 from datetime import datetime
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from pathlib import Path
 
 DOMAIN_COLORS = {
@@ -117,12 +123,43 @@ def build_html(papers):
 </body></html>"""
 
 
+def send_email(html, papers, recipient):
+    sender = os.environ["EMAIL_SENDER"]
+    password = os.environ["EMAIL_PASSWORD"]
+    smtp_host = os.environ.get("EMAIL_SMTP_HOST", "smtp.gmail.com")
+    smtp_port = int(os.environ.get("EMAIL_SMTP_PORT", "587"))
+
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    subject = f"Weekly Research Digest — {date_str}"
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"] = f"Paper Digest <{sender}>"
+    msg["To"] = recipient
+
+    plain = "\n\n".join(
+        f"#{i} {p['title']}\n{p.get('analysis', '')}"
+        for i, p in enumerate(papers, 1)
+    )
+    msg.attach(MIMEText(plain, "plain"))
+    msg.attach(MIMEText(html, "html"))
+
+    with smtplib.SMTP(smtp_host, smtp_port) as server:
+        server.starttls()
+        server.login(sender, password)
+        server.send_message(msg)
+
+    print(f"Email sent to {recipient}", file=sys.stderr)
+
+
 def main():
     import argparse
 
     parser = argparse.ArgumentParser()
     parser.add_argument("json_file", help="Path to digest JSON")
     parser.add_argument("--save", action="store_true", help="Save to digests/ folder")
+    parser.add_argument("--send", action="store_true", help="Send email via SMTP")
+    parser.add_argument("--to", help="Recipient email address (required with --send)")
     args = parser.parse_args()
 
     with open(args.json_file) as f:
@@ -139,7 +176,14 @@ def main():
         html_path.write_text(html)
         json_path.write_text(json.dumps(papers, indent=2))
         print(html_path, file=sys.stderr)
-    else:
+
+    if args.send:
+        if not args.to:
+            print("ERROR: --to is required with --send", file=sys.stderr)
+            sys.exit(1)
+        send_email(html, papers, args.to)
+
+    if not args.save and not args.send:
         print(html)
 
 
