@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of June 02, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2605.12882" style="color:#1a1a2e;text-decoration:none;">CiteVQA: Benchmarking Evidence Attribution for Trustworthy Document Intelligence</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Dongsheng Ma, Zhe Yang, Jiaxin Zhang, Tiancheng Zhao, Bowen Qin
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2605.12882" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2605.12882" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>When you ask an AI to answer a question about a document — say, a legal contract or a medical report — today's systems can often give you the right answer. But here's the catch: they frequently point you to the wrong part of the document as their source. Imagine a lawyer's AI assistant saying "the liability cap is $5 million" and highlighting paragraph 12, when the real answer is buried in paragraph 47. The answer might be correct, but the citation is wrong — and in law, finance, or medicine, that kind of mistake can be dangerous. This paper calls this failure "Attribution Hallucination," and it's the first benchmark designed to systematically test for it.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a test called CiteVQA that works like a tough open-book exam for AI. Instead of just checking whether the AI gets the right answer, it also checks whether the AI can point to exactly where in the document that answer came from — down to specific bounding boxes on the page, like highlighting with a marker. They assembled 1,897 questions across 711 real PDF documents spanning seven different professional domains (think legal filings, financial reports, scientific papers) in two languages, with documents averaging over 40 pages each. Then they ran 20 of today's best multimodal AI models through this gauntlet and scored them using a strict metric: you only get credit if both your answer AND your citation are correct.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">The best-performing system overall (Gemini-3.1-Pro-Preview) scored just 76.0 on Strict Attributed Accuracy — meaning roughly 1 in 4 answers either had the wrong answer or pointed to the wrong place.</li>
+<li style="margin-bottom:6px;">The best open-source model collapsed to just 22.5 — failing on more than 3 out of 4 questions when held to citation standards.</li>
+<li style="margin-bottom:6px;">Many models could get the answer right but consistently cited the wrong region, revealing that "knowing the answer" and "knowing where the answer came from" are very different skills for AI.</li>
+<li style="margin-bottom:6px;">Performance dropped sharply on multi-page and cross-document reasoning tasks, suggesting models struggle to track information across long documents.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This work exposes a blind spot in how we've been evaluating AI document understanding. If we're going to trust AI to help professionals make decisions based on documents, we need to know the AI isn't just guessing the right answer — it needs to show its work. CiteVQA gives the field a rigorous way to measure that, and the results suggest we have a long way to go, especially with open-source models.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The benchmark is strong on professional documents but may not cover every edge case in real-world use. Also, scoring bounding-box accuracy is inherently tricky — a citation that's slightly off might still be "good enough" for a human reader. The bigger issue: this paper reveals the problem clearly but doesn't propose a solution. We now know Attribution Hallucination is widespread, but fixing it is a separate challenge that will require new model architectures or training approaches.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>AI can often get the right answer from a document, but it frequently can't show you where it found it — and this paper proves that gap is much wider than anyone assumed.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2508.19236" style="color:#1a1a2e;text-decoration:none;">MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Hao Shi, Kaiyuan Xie, Zhenguo Li, Zihan Wang, Jianke Zhu
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> ICLR 2026 (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2508.19236" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2508.19236" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Imagine asking a robot to make you a cup of coffee. It needs to open the cabinet, grab a mug, place it under the machine, press the button, wait, then pour milk. Each step depends on remembering what happened before — you can't pour milk if you forgot whether you already pressed the brew button. Today's robot AI systems mostly look at a single snapshot in time and decide what to do next, like someone with severe short-term memory loss trying to cook. They can handle simple one-step tasks (pick up the red block) but fall apart on multi-step sequences where the past matters. MemoryVLA tackles this by giving robots a working memory system inspired by how the human brain actually stores and retrieves experiences.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers designed a three-part framework called Cognition-Memory-Action. Think of it like giving the robot a notepad and the skills to use it. First, a pretrained vision-language model looks at what the robot's camera sees and creates two kinds of mental notes: "perceptual tokens" (detailed snapshots — what the scene looks like right now) and "cognitive tokens" (higher-level understanding — what's happening and what objects are involved). These notes go into working memory, which then selectively stores the most useful bits into a longer-term Memory Bank. The clever part is that the robot doesn't just record everything — it merges redundant memories and retrieves only what's relevant to the current decision. Finally, a diffusion-based action generator uses this memory-enriched context to plan smooth, temporally aware movements.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">On the LIBERO-5 simulation benchmark, MemoryVLA achieved a 96.5% success rate — a substantial improvement over previous state-of-the-art systems like CogACT and pi-0.</li>
+<li style="margin-bottom:6px;">In real-world robot experiments, it hit 84.0% success under conditions that specifically require remembering past actions (non-Markovian tasks).</li>
+<li style="margin-bottom:6px;">Tested across 150+ tasks on three different robot platforms, showing the approach isn't just a one-trick solution.</li>
+<li style="margin-bottom:6px;">On more challenging benchmarks (Mikasa-Robo), success rates were more modest at 41.2%, indicating hard manipulation tasks remain difficult.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This paper represents a significant step toward robots that can handle the kind of multi-step, context-dependent tasks that actually matter in homes and workplaces. The memory architecture is modular — it could potentially be plugged into other robot AI systems. If robots are ever going to reliably assist humans with cooking, cleaning, or assembly work, they need exactly this kind of temporal awareness.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>While 96.5% sounds impressive in simulation, the real-world success rate of 84% means the robot still fails roughly 1 in 6 times — not yet reliable enough for unsupervised deployment. The more challenging benchmarks show much lower scores, suggesting the approach works best on structured, well-defined tasks. The memory system also adds computational overhead, and the paper doesn't deeply explore failure modes — when the robot fails, is it because it remembered the wrong thing, or forgot something critical?</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>By giving robots a brain-inspired memory system, MemoryVLA lets them handle multi-step tasks that require remembering what they've already done — a crucial step toward robots that can actually help around the house.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2511.01571" style="color:#1a1a2e;text-decoration:none;">PixelVLA: Advancing Pixel-level Understanding in Vision-Language-Action Model</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Wenqi Liang, Gan Sun, Yang Cong, Junwei Han, Haibin Ling, Zhikai Dong, Yiming Yang, Di Hu
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> ICLR 2026 (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2511.01571" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2511.01571" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Today's robot AI systems that combine vision and language (so-called Vision-Language-Action models) have a resolution problem — they understand scenes at a coarse, image-wide level but struggle with fine-grained spatial details. It's like asking someone to "pick up the small screw next to the larger bolt" when they can only see the general area but can't distinguish individual objects precisely. Current models also lean heavily on text instructions, which means you have to describe exactly what you want in words rather than simply pointing at it. PixelVLA solves both problems: it gives robots pixel-level precision and the ability to understand visual prompts (like a user circling an object on screen).</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built PixelVLA as the first Vision-Language-Action model that truly "sees" at the pixel level. They integrated two specialized components into the model: a multiscale pixel-aware encoder that processes images at multiple zoom levels (from the whole scene down to individual pixel regions), and a visual prompting encoder that lets users indicate targets through visual cues rather than just text. To train this system, they developed an automated two-stage annotation pipeline that takes existing robot demonstration datasets and enriches them with pixel-level labels — producing a new dataset called Pixel-160K with 160,000 annotated samples. Think of it like taking a photo album and going back to carefully label every object in every photo, except an algorithm does it automatically.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">PixelVLA improved manipulation success rates by 10.1% to 28.7% over OpenVLA, a leading baseline, across three standard benchmarks.</li>
+<li style="margin-bottom:6px;">The model required only 1.5% of OpenVLA's pretraining compute cost — meaning it's dramatically cheaper to train while performing substantially better.</li>
+<li style="margin-bottom:6px;">Works with both text prompts ("pick up the red cup") and visual prompts (circling the cup in an image), making it more flexible for real-world use.</li>
+<li style="margin-bottom:6px;">The Pixel-160K dataset created through their automated pipeline provides a reusable resource for other researchers.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This paper matters for two reasons. First, the pixel-level precision addresses a real bottleneck: robots working in cluttered environments need to distinguish between similar objects that are close together, which coarse image understanding simply can't do. Second, the dramatic reduction in training cost (98.5% less than the baseline) is significant for democratizing robot AI — smaller labs and companies could train competitive models without massive GPU clusters. The visual prompting capability also opens the door to more intuitive human-robot interaction.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>While the improvements are clear and the efficiency gains are impressive, the paper evaluates primarily on standard benchmarks that may not capture the full complexity of real-world environments. The automated annotation pipeline, while clever, may introduce errors that compound in edge cases. Also, PixelVLA still relies on a pretrained vision-language backbone, meaning its performance ceiling is partly determined by how good that backbone is. The visual prompting feature is promising but needs more testing in messy, real-world scenarios where "just point at it" gets complicated by occlusion and clutter.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>PixelVLA gives robot AI systems the fine-grained visual precision they've been missing, at a fraction of the training cost — making robots better at understanding exactly what you want them to grab, move, or manipulate.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2512.09786" style="color:#1a1a2e;text-decoration:none;">TinyDéjàVu: Smaller Memory Footprint & Faster Inference on Sensor Data Streams with Always-On Microcontrollers</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zhaolan Huang, Emmanuel Baccelli
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> ISIoT 2026 (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2512.09786" style="color:#27ae60;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2512.09786" style="color:#27ae60;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Billions of tiny sensors around the world are constantly monitoring things — tracking your heart rate on a smartwatch, detecting vibrations in industrial equipment, sensing air quality in buildings. These sensors run on microcontrollers with about 128 kilobytes of RAM — that's roughly 60,000 times less memory than your smartphone. Running AI on these devices to interpret sensor data in real time is incredibly challenging because neural networks are memory-hungry. The current approach treats every new reading as completely fresh, running the full AI model from scratch each time, even though consecutive sensor readings mostly overlap (imagine a window sliding forward one step at a time across a data stream). This wastes both memory and battery power — and for devices that need to run for years on a single battery, that waste is a real problem.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The TinyDéjàVu framework (the name means "already seen," a nod to the key insight) takes advantage of the fact that consecutive sensor readings share most of their data. When a sensor collects data using a sliding window approach — say, looking at the last 2 seconds of heart rate data, then shifting forward by 0.1 seconds — roughly 95% of the data in the new window was already in the previous one. TinyDéjàVu remembers the intermediate computations from the last inference pass and reuses them, only computing the genuinely new parts. Think of it like a translator who, instead of re-reading an entire book every time a new paragraph is added, just reads the new paragraph and updates their summary. The framework works with multiple types of neural networks and doesn't require retraining or modifying the AI model itself.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Reduces RAM usage by more than 60%, bringing neural network inference within reach of microcontrollers that previously couldn't fit the model in memory.</li>
+<li style="margin-bottom:6px;">Eliminates up to 90% of redundant computation on overlapping sliding window inputs, dramatically extending battery life.</li>
+<li style="margin-bottom:6px;">Works across multiple neural network architectures without requiring model modification or retraining.</li>
+<li style="margin-bottom:6px;">Open-source implementation with reproducible benchmarks on actual microcontroller hardware — not just simulations.</li>
+<li style="margin-bottom:6px;">The approach is plug-and-play: it sits between the sensor data pipeline and the existing neural network, requiring no changes to either.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is the kind of infrastructure work that enables entire categories of applications. If you can run sophisticated AI on a device with 128KB of RAM and a coin-cell battery, you unlock continuous health monitoring on cheaper wearables, predictive maintenance sensors in factories that last years without service, and smart environmental monitors that can be deployed at scale in developing regions. The 60% RAM reduction isn't just an efficiency gain — it's the difference between "this AI model physically cannot fit on this device" and "it works."</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The framework is specifically designed for sliding-window sensor data — it won't help with other types of AI tasks like image recognition or language processing. The actual performance gains depend heavily on how much overlap exists between consecutive windows; with very little overlap, the benefits diminish. The paper also focuses on relatively simple neural network models suited for microcontrollers; it's unclear how well this approach would scale to more complex architectures. Still, for its target use case — always-on sensor monitoring — the gains are substantial and practical.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>TinyDéjàVu makes AI-powered sensor monitoring feasible on the cheapest, smallest microcontrollers by cleverly reusing computations from previous readings — saving 60% of memory and 90% of redundant work.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2601.13160" style="color:#1a1a2e;text-decoration:none;">Training Instability in Deep Learning Follows Low-Dimensional Dynamical Principles</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zhipeng Zhang, Zhenjie Yao, Kai Li, Lei Yang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2601.13160" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2601.13160" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Training a large AI model is a bit like baking a soufflé — sometimes it works beautifully, and sometimes it collapses without warning. Companies and researchers routinely spend millions of dollars and weeks of compute time training deep learning models, only to have the process suddenly crash or produce wildly inconsistent results. This isn't just annoying — it's a massive waste of resources and a serious barrier to reproducibility (if you can't reliably reproduce a result, is it really science?). The core issue is that nobody fully understands why training goes unstable. We have scattered observations and ad-hoc fixes, but no unified framework for understanding when and why collapse happens.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Instead of looking for fixes, this team stepped back and asked a more fundamental question: is there a pattern to how and when training breaks down? They treated the training process as a dynamical system — similar to how physicists study weather patterns or planetary orbits — and organized stability along four dimensions: optimization (is the learning algorithm behaving well?), data (is the training data causing problems?), parameters (are the model's internal weights in a healthy range?), and learning signal (is the feedback the model receives reliable?). They then ran "controlled perturbation audits" — essentially, they deliberately poked the training process in precise ways and watched what happened, like a doctor running stress tests on a heart. They applied this across both reinforcement learning and large language model training to see if universal patterns emerge.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">High final performance does NOT mean training was stable. Models that ultimately performed well often experienced hidden instabilities during training that could have gone either way — a sobering finding for anyone who judges success purely by the end result.</li>
+<li style="margin-bottom:6px;">Adding the right amount of randomness ("controlled stochasticity") consistently protects against training collapse across different types of AI. This is counterintuitive — you'd think adding noise would make things worse, but it acts like a shock absorber.</li>
+<li style="margin-bottom:6px;">Before a training run visibly collapses, there are early warning signs in low-dimensional "meta-states" — compressed representations of the training trajectory. These deviations show up before the metrics on your dashboard turn red.</li>
+<li style="margin-bottom:6px;">These three patterns held across both reinforcement learning (teaching agents through trial and error) and large language model training (the kind of AI behind ChatGPT), suggesting they may be universal principles.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>If the early warning signs identified in this paper can be monitored in real time, it could save organizations enormous amounts of money and time. Instead of watching a $10 million training run crash at hour 200, you could detect instability at hour 20 and intervene. The finding about controlled stochasticity also provides practical guidance: don't over-optimize your training pipeline by removing all sources of randomness, because some of that noise is actually protecting you.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The paper is primarily diagnostic and theoretical — it identifies patterns but doesn't yet offer a turnkey monitoring tool that practitioners can plug into their training pipelines. The experiments, while spanning two important domains (RL and LLMs), don't cover every type of deep learning. The "low-dimensional meta-states" concept is promising but needs more work to be actionable: how do you compute and monitor these in real time without adding significant overhead? Still, as a conceptual contribution, this paper changes how we should think about training stability.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Training crashes in deep learning aren't random chaos — they follow predictable low-dimensional patterns, and this paper shows you can see them coming before the metrics on your dashboard turn red.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
