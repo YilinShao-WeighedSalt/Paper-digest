@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of June 14, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2512.08924" style="color:#1a1a2e;text-decoration:none;">Efficiently Reconstructing Dynamic Scenes One D4RT at a Time</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Chuhan Zhang, Guillaume Le Moing, Skanda Koppula, Ignacio Rocco, Mehdi S. M. Sajjadi
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> CVPR 2026 (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2512.08924" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2512.08924" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Imagine you film a busy street scene with your phone — people walking, cars moving, a dog running across the frame. Now imagine trying to build a complete 3D model of that entire scene, including every moving object, from that single video alone. That is the challenge of "4D reconstruction" (3D space plus time), and it matters for everything from self-driving cars needing to understand their surroundings to filmmakers wanting to re-render a scene from a new camera angle. Until now, doing this required either expensive multi-camera rigs or extremely slow computation that could take hours for a few seconds of footage.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team from Google DeepMind, UCL, and Oxford built a system called D4RT that watches a regular video and figures out three things at once: how far away every object is (depth), where every point moves over time (correspondence), and where the camera itself was positioned and aimed throughout the video (camera parameters). Think of it like giving a computer the ability to watch a home video and mentally reconstruct the full 3D world behind it, including all the moving parts.</p>
+<p style='margin:8px 0;'>The clever trick is in how D4RT asks questions about the scene. Previous systems had to process every single pixel in every single frame — like reading every word on every page of a book to answer one question. D4RT instead uses a "query" system where it can efficiently look up the 3D position of any specific point at any specific time, without decoding the entire frame. It is like having an index at the back of the book. This single unified architecture replaces what used to require multiple separate specialized systems bolted together.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Best Paper Award at CVPR 2026</strong>, the premier computer vision conference, chosen from over 16,000 submissions — a mark of exceptional significance.</li>
+<li style="margin-bottom:6px;"><strong>New state of the art</strong> across multiple 4D reconstruction benchmarks, outperforming all previous methods on depth estimation, point tracking, and camera pose estimation simultaneously.</li>
+<li style="margin-bottom:6px;"><strong>Dramatically more efficient</strong> than prior approaches: the query-based decoding avoids the computational explosion of dense per-frame processing, making both training and inference faster and more memory-friendly.</li>
+<li style="margin-bottom:6px;"><strong>Single unified model</strong> replaces what previously required multiple separate networks, each specialized for one sub-task.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is a foundational advance for any technology that needs to understand 3D motion from video — autonomous vehicles, augmented reality, robotics, sports analytics, and visual effects. By making 4D reconstruction fast, accurate, and unified in one model, D4RT lowers the barrier for applications that previously needed expensive hardware setups or impractical amounts of compute time.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The paper sets a new state of the art on standard benchmarks, but real-world video can be far messier — heavy occlusion, poor lighting, motion blur, and scenes with dozens of independently moving objects will stress any system. The model was also developed at Google DeepMind with significant compute resources, so reproducing or extending this work independently may be challenging for smaller research groups.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>D4RT turns a single video into a full 3D reconstruction of a dynamic scene — faster, more accurately, and more elegantly than anything before it, earning the top prize at the world's biggest computer vision conference.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2601.18692" style="color:#1a1a2e;text-decoration:none;">A Pragmatic VLA Foundation Model</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Wei Wu, Fan Lu, Yunnan Wang, Shuai Yang, Kecheng Zheng
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2601.18692" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2601.18692" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Today's factory robots are specialists — a robot arm trained to pack boxes on one assembly line cannot be moved to a different line with different products without extensive reprogramming. The dream is a "general-purpose" robot brain that can see what is in front of it, understand a spoken or written instruction like "pick up the red cup and place it on the tray," and then actually do it — on any robot arm, not just the one it was trained on. This is the promise of Vision-Language-Action (VLA) models, which combine computer vision, language understanding, and physical motor control into one system. The problem is that most existing VLA models are either too slow to train, too narrow in the tasks they handle, or too brittle when moved to a different robot.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built LingBot-VLA, a foundation model trained on roughly 20,000 hours of real-world robot manipulation data — think of it as the robot equivalent of a student watching 20,000 hours of hands-on demonstrations. The data came from 9 different dual-arm robot setups, so the model learned not just "how to do tasks" but "how to do tasks regardless of which robot body it is using." The model takes in a camera image of the workspace and a text instruction, then directly outputs the precise motor commands to complete the task. The team also invested heavily in engineering efficiency, building a training pipeline that processes 261 data samples per second on 8 GPUs — roughly twice as fast as competing systems.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Tested on 3 different robotic platforms</strong>, each running 100 distinct tasks with 130 fine-tuning episodes per task — a rigorous and realistic evaluation.</li>
+<li style="margin-bottom:6px;"><strong>Outperformed all competitors</strong> in task success across all three platforms, demonstrating genuine cross-platform generalization rather than memorization of one setup.</li>
+<li style="margin-bottom:6px;"><strong>Training throughput of 261 samples/second</strong> on 8 GPUs, a 1.5 to 2.8x speedup over existing VLA training codebases — meaning faster iteration cycles and lower compute costs.</li>
+<li style="margin-bottom:6px;"><strong>Built on 20,000 hours of real-world data</strong> from 9 robot configurations, making it one of the largest real-world VLA training datasets assembled.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>VLA models are widely seen as the path toward robots that can work alongside humans in warehouses, kitchens, hospitals, and homes. LingBot-VLA's contribution is showing that a single model can genuinely transfer across different physical robots and diverse tasks, which is a prerequisite for making robots economically viable outside of narrow industrial niches. The efficiency improvements also matter — if training a robot brain takes weeks and millions of dollars in compute, only the largest companies can play.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The paper reports "superiority over competitors" but the exact success rate percentages are not fully detailed in the abstract, which makes it hard to judge whether this is an incremental improvement or a dramatic leap. Twenty thousand hours of real-world data is also a significant barrier to entry — this is not something a university lab can easily replicate. And "dual-arm manipulation" is still a controlled subset of all the tasks robots might eventually need to do.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>LingBot-VLA demonstrates that one robot brain can learn to see, understand instructions, and act across multiple different robot bodies and hundreds of tasks — a practical step toward general-purpose robots.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2604.17335" style="color:#1a1a2e;text-decoration:none;">Learning Whole-Body Humanoid Locomotion via Motion Generation and Motion Tracking</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zewei Zhang, Kehan Wen, Michael Xu, Xue Bin Peng, Marco Hutter
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2604.17335" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2604.17335" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Getting a humanoid robot to walk is surprisingly hard. Unlike wheeled robots, a two-legged machine has to constantly balance itself, coordinate dozens of joints, and react in real time to whatever surface is underfoot — gravel, stairs, an unexpected step down. Most humanoid robots today can walk on flat floors in controlled settings, but put them in a real environment with obstacles and they tend to fall over. The challenge is not just walking — it is walking the way humans do, using the entire body to adapt fluidly to whatever terrain comes next.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team from ETH Zurich and collaborators took a two-stage approach that mirrors how humans might learn to navigate rough terrain. First, they trained a "motion imagination" system — a diffusion model (the same type of AI behind image generators like DALL-E) that watches recordings of human movement and learns to generate realistic full-body motion plans adapted to whatever terrain is ahead. Think of it as the robot's ability to look at an obstacle and mentally rehearse how to cross it.</p>
+<p style='margin:8px 0;'>Second, they trained a separate "motion execution" system using reinforcement learning — essentially trial and error in simulation — that learns to make the robot's actual joints follow those imagined movements. The key insight was training these two systems together in a closed loop: the executor learns to cope with imperfect plans from the generator, making the whole system robust rather than brittle.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Deployed on a real Unitree G1 humanoid robot</strong> running entirely on onboard sensors and computation — no external computers or motion capture needed.</li>
+<li style="margin-bottom:6px;"><strong>Climbed 75-centimeter-tall boxes</strong>, vaulted over hurdles, and traversed staircases — aggressive terrain for a humanoid of this size.</li>
+<li style="margin-bottom:6px;"><strong>Dynamically switched between skills</strong> (climbing, stepping, vaulting) on mixed terrain combinations the robot had never seen in training — a strong indicator of genuine generalization, not memorization.</li>
+<li style="margin-bottom:6px;"><strong>Real-time onboard perception</strong>: the robot used its own cameras and processors to perceive terrain and plan motions, making it a self-contained system.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Humanoid robots are being developed for disaster response, construction, home assistance, and warehouse work — environments full of stairs, uneven floors, and obstacles. This paper demonstrates that a humanoid robot can tackle genuinely challenging terrain with human-like agility, using only its own senses and an affordable commercial robot platform. The approach of combining generative motion planning with learned tracking is also a transferable technique that could apply to other robotic form factors.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The demonstrations are impressive but still in controlled research settings — real disaster sites and construction zones add wind, slippery surfaces, shifting loads, and unpredictable obstacles that were not tested. The Unitree G1 is also a relatively lightweight robot; scaling this to heavier platforms or adding manipulation (carrying objects while walking over obstacles) remains an open challenge. The system currently handles locomotion only, not the full picture of what a useful humanoid needs to do.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An ETH Zurich team taught a humanoid robot to climb boxes, clear hurdles, and navigate stairs by combining AI-generated motion plans with learned motor control — all running on the robot's own hardware in real time.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2602.02439" style="color:#1a1a2e;text-decoration:none;">Energy-Efficient Neuromorphic Computing for Edge AI: A Framework with Adaptive Spiking Neural Networks and Hardware-Aware Optimization</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Olaf Yunus Laitinen Imanov, Derya Umut Kulali, Taner Yilmaz, Duygu Erisken, Rana Irem Turhan
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2602.02439" style="color:#27ae60;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2602.02439" style="color:#27ae60;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Running AI on a small device — a drone, a wearable health monitor, a security camera — is fundamentally limited by battery life. Today's deep neural networks were designed for data centers with unlimited power. Shrinking them to fit on a tiny chip usually means either gutting the model's accuracy or accepting terrible battery performance. A delivery drone that drains its battery running obstacle-detection AI is not a useful drone. The industry needs AI that can think fast while sipping power, and that is where "neuromorphic" computing comes in — chips designed to work more like the human brain, which manages incredible feats of perception on roughly 20 watts.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built NeuEdge, a complete framework for deploying spiking neural networks (SNNs) on edge hardware. Traditional AI networks fire every neuron on every input. Spiking networks, like biological neurons, only fire when something interesting happens — they are event-driven, which inherently saves energy. But spiking networks have historically been hard to train and often lose accuracy compared to conventional models.</p>
+<p style='margin:8px 0;'>NeuEdge tackles this with three innovations. First, a clever coding scheme that blends two ways neurons can communicate (how fast they fire and exactly when they fire), keeping the information richness while reducing unnecessary activity. Second, a training process that simultaneously optimizes the network for accuracy and for efficient mapping onto actual neuromorphic hardware — it does not just train a good model and hope it runs well on the chip; it designs the model and the chip layout together. Third, an adaptive threshold system that automatically adjusts how sensitive each neuron is based on what it is seeing, so neurons do not waste energy firing on noise.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>91-96% accuracy</strong> on standard vision and audio benchmarks, which is competitive with conventional deep neural networks that consume far more power.</li>
+<li style="margin-bottom:6px;"><strong>2.3 millisecond inference latency</strong> on edge hardware — fast enough for real-time applications like drone navigation or voice recognition.</li>
+<li style="margin-bottom:6px;"><strong>847 GOp/s/W energy efficiency</strong> — a measure of computational operations per watt that represents a major improvement for neuromorphic edge devices.</li>
+<li style="margin-bottom:6px;"><strong>312x energy savings</strong> compared to conventional deep neural networks in an autonomous-drone workload, while maintaining real-time performance. That is the difference between a drone that flies for 5 minutes running AI and one that flies for over 25 hours.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Edge AI is one of the fastest-growing segments of the tech industry. As AI moves from the cloud to devices — smart glasses, wearables, agricultural sensors, industrial inspection cameras — power efficiency becomes the bottleneck. NeuEdge shows that spiking neural networks can finally close the accuracy gap with conventional AI while offering energy savings measured in hundreds of times, not percentages. This could unlock AI capabilities on devices that currently cannot support them.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The 91-96% accuracy range is solid but not best-in-class for all tasks — state-of-the-art conventional models on some benchmarks hit 98-99%. The 312x energy savings figure comes from a specific drone case study and may not generalize to all workloads. Neuromorphic hardware itself is still a niche market, so the practical availability of chips that can fully exploit NeuEdge's optimizations is limited today.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>NeuEdge makes brain-inspired spiking neural networks practical for real edge devices, delivering 312 times the energy efficiency of conventional AI with only a small accuracy trade-off — a potential game-changer for battery-powered AI.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2606.06527" style="color:#1a1a2e;text-decoration:none;">Characterizing the Impact of NVFP4 Quantization for Low-Power Edge AI Deployment</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Ovishake Sen, Venkata Nithin Kamineni, Daniel Lobo, Swarup Bhunia, Rickard Ewetz, Baibhab Chatterjee
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2606.06527" style="color:#27ae60;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2606.06527" style="color:#27ae60;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Modern AI models are big — they use numbers stored in 16 or 32 bits of precision, which means they need a lot of memory and a lot of math to run. That is fine on a cloud server, but when you want to run AI on a tiny chip inside a smart doorbell, a medical implant, or a satellite sensor, every bit of memory and every watt of power counts. The question is: how much can you shrink those numbers before the AI starts giving wrong answers? This paper tackles that question for NVIDIA's newest ultra-compact number format, NVFP4, which squeezes AI calculations down to just 4 bits — one-eighth the size of standard 32-bit numbers.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team at the University of Florida conducted a careful, systematic study of what happens when you compress neural network calculations to NVFP4's 4-bit floating-point format. Rather than just testing one model and declaring victory, they ran what is called an "ablation study" — methodically varying one factor at a time across six different edge-optimized AI models to understand exactly how each design choice affects accuracy.</p>
+<p style='margin:8px 0;'>They examined how different levels of precision for both the weights (the model's learned knowledge) and activations (the model's in-flight calculations) interact with each other. They also studied "block-size scaling," which is a technique where you group numbers together and share a scaling factor to preserve more information despite the extreme compression. Think of it like a zip file — you can compress more aggressively if you are clever about how you organize the data before compressing it.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Block size of 16 is the sweet spot</strong>: grouping 16 numbers together and sharing one scaling factor provides the best balance between accuracy retention and storage savings across all six models tested.</li>
+<li style="margin-bottom:6px;"><strong>Only 4.5 bits per element needed</strong> on average (slightly above the raw 4 bits because of the shared scaling overhead) for blocks of 4,096 elements — representing a roughly 7x reduction in memory compared to 32-bit storage.</li>
+<li style="margin-bottom:6px;"><strong>Three-tier scaling hierarchy</strong> (FP4 data + FP8 block scale + FP32 tensor scale) preserves the dynamic range that neural networks need to work correctly, even at extreme compression.</li>
+<li style="margin-bottom:6px;"><strong>Tested across six edge-efficient model architectures</strong>, providing a practical design guide rather than a one-off result.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>NVIDIA's NVFP4 format is expected to ship in upcoming edge and mobile AI accelerator chips. This paper provides the first thorough engineering guide for how to actually use it — which settings to choose, what trade-offs to expect, and where the pitfalls are. For hardware designers and ML engineers building the next generation of smart devices, this is the kind of practical characterization work that turns a chip specification into a usable product.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a characterization study, not a breakthrough in accuracy or a new algorithm. It tells you what happens when you use NVFP4, but it does not fundamentally improve upon it. The study also focuses on relatively small, edge-optimized models — how these findings translate to larger models or to non-vision tasks (like language or audio) is not explored. And while 4-bit quantization is impressive, some safety-critical applications may not tolerate even small accuracy drops.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>This University of Florida study maps out the practical design space for NVIDIA's 4-bit AI number format, finding that grouping 16 numbers together hits the sweet spot for shrinking AI models to run on tiny, power-sipping chips.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
