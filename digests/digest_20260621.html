@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of June 21, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2506.07905" style="color:#1a1a2e;text-decoration:none;">WeThink: Toward General-purpose Vision-Language Reasoning via Reinforcement Learning</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Jie Yang, Feipeng Ma, Zitian Wang, Dacheng Yin, Kang Rong, Fengyun Rao, Ruimao Zhang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2506.07905" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2506.07905" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Today's AI systems can either understand images or reason through complex multi-step problems — but doing both at once remains remarkably hard. Imagine asking an AI to look at a geometry diagram and prove a theorem, or to examine a chart and explain what business decision it implies. Current vision-language models often stumble when reasoning requires more than surface-level pattern matching. The challenge is: how do you teach an AI to genuinely <em>think</em> about what it sees, rather than just describe it?</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The WeThink team took inspiration from a breakthrough in text-only AI (DeepSeek-R1, which learned to reason through reinforcement learning — essentially trial-and-error with rewards) and asked: can we do the same thing for models that process both images and text?</p>
+<p style='margin:8px 0;'>Their approach works in three stages. First, they built an automated pipeline that looks at images and generates challenging questions requiring real reasoning to solve — not just "what color is the car?" but "given this graph, what happens if we change variable X?" Second, they compiled a massive dataset of 120,000 such question-answer pairs spanning math, science, general knowledge, and more. Third — and this is the key innovation — they trained a vision-language model using reinforcement learning with a clever dual reward system: a strict rule-based checker for problems with definitive answers (like math), combined with a separate AI judge for open-ended reasoning tasks. This hybrid approach means the model gets accurate feedback regardless of whether the question has one right answer or requires nuanced judgment.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>1st place</strong> on the OpenCompass Multimodal Reasoning Leaderboard (the standard benchmark for visual reasoning)</li>
+<li style="margin-bottom:6px;"><strong>5th place</strong> on the OpenCompass Multi-modal Academic Leaderboard across 14 diverse benchmarks</li>
+<li style="margin-bottom:6px;">All this with a relatively compact 7-billion parameter model (WeThink-Qwen2.5VL-7B), significantly outperforming the base model it was built on</li>
+<li style="margin-bottom:6px;">The improvements span mathematical reasoning, scientific understanding, chart interpretation, and general visual question-answering — not just one narrow task</li>
+<li style="margin-bottom:6px;">The entire dataset (120K pairs) and trained model are open-source, meaning anyone can replicate or build on this work</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This work demonstrates that reinforcement learning can be a general-purpose tool for improving AI visual reasoning — not just a trick that works for math problems. If this approach scales, it could lead to AI assistants that genuinely understand documents, diagrams, medical images, or engineering schematics the way a knowledgeable human would. The fact that it's fully open-source means the broader research community (and industry) can immediately build on it.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The model is still "only" 7 billion parameters — impressive for its size, but larger proprietary models still dominate absolute performance on the hardest benchmarks. The reinforcement learning training requires significant compute resources, and the quality of the automatically generated questions depends heavily on the image complexity. Real-world deployment would need further testing on domain-specific tasks (medical, legal, engineering) where errors carry higher stakes.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A 7-billion-parameter open-source model just topped the multimodal reasoning leaderboard by teaching AI to think about images through trial-and-error learning, not just memorization.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2605.18722" style="color:#1a1a2e;text-decoration:none;">Dexora: Open-source VLA for High-DoF Bimanual Dexterity</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zongzheng Zhang, Jingrui Pang, Zhuo Yang, Kun Li, Minwen Liao, Saining Zhang, Guoxuan Chi, Jinbang Guo, Huan-ang Gao, Modi Shi, Dongyun Ge, Yao Mu, Jiayuan Gu, Rui Chen, Hao Dong, Huazhe Xu, Li Yi, Yixin Zhu, Hang Zhao, Pengwei Wang, Shanghang Zhang, Guocai Yao, Jianyu Chen, Hongyang Li, Hao Zhao
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> ICRA 2026 (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2605.18722" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2605.18722" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Humans accomplish everyday tasks — folding laundry, assembling furniture, cooking — using two hands with incredibly dexterous fingers. Robots today mostly use simple grippers (think giant chopsticks) or at best a single robotic hand. Teaching a robot to coordinate two full hands with all their fingers is exponentially harder: you go from controlling maybe 6-7 joints to 36 simultaneously. This is the gap between robots that can pick up a box and robots that can tie a knot or thread a needle.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The Dexora team built the first complete open-source system for teaching robots dual-arm, dual-hand manipulation (36 degrees of freedom — like controlling 36 independent motors at once). Their approach combines three clever elements.</p>
+<p style='margin:8px 0;'>First, they built a hybrid data collection system: a human wears a custom exoskeleton backpack (for arm movements) while their fingers are tracked by an Apple Vision Pro headset (for fine finger motion). This lets a human demonstrator naturally perform tasks while the system records every joint angle. Second, they created a digital twin in simulation (MuJoCo) that mirrors the real robot exactly, allowing them to generate 100,000 practice runs cheaply in software. Third, they trained a Vision-Language-Action model — an AI that sees through cameras, understands language instructions, and outputs motor commands — using a quality filter that automatically discards bad demonstrations from the training data.</p>
+<p style='margin:8px 0;'>Think of it like teaching someone to play piano: you demonstrate the pieces (data collection), let them practice on a silent keyboard first (simulation), then move to the real instrument (real-world training), while a teacher grades each attempt to focus practice on the best examples.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>90%+ success rate</strong> on pick-and-place and opening articulated objects (cabinets, drawers)</li>
+<li style="margin-bottom:6px;"><strong>66.7% success</strong> on genuinely dexterous tasks (up from 51.7% baseline — a 15 percentage-point improvement)</li>
+<li style="margin-bottom:6px;">First VLA system to handle <strong>36 degrees of freedom</strong> simultaneously (dual arms + dual hands)</li>
+<li style="margin-bottom:6px;">Dataset: <strong>12,200 real-world teleoperated episodes</strong> (40.5 hours) covering 347 different objects</li>
+<li style="margin-bottom:6px;"><strong>100,000 simulated episodes</strong> for pretraining</li>
+<li style="margin-bottom:6px;">Fully open-source: code, models, and dataset all publicly available</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is a significant step toward robots that can do human-level manipulation — not just factory pick-and-place, but tasks requiring genuine finger dexterity. By making the entire system open-source (hardware designs, software, dataset, trained models), the team is effectively giving every robotics lab in the world a head start on building dexterous robots. If dexterous manipulation becomes reliable, it unlocks applications in elder care, surgery assistance, and manufacturing tasks that currently require human hands.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>A 66.7% success rate on dexterous tasks means the robot still fails one in three times — far from production-ready. The data collection hardware (exoskeleton + Vision Pro) is expensive and specialized. And while 36 DoF sounds impressive, human hands have even more degrees of freedom plus tactile sensing that this system lacks entirely. Real-world deployment would need much higher reliability and the ability to recover from failures gracefully.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>The first open-source system that lets a robot use two dexterous hands simultaneously achieves 90% success on basic tasks, proving that human-like bimanual manipulation is becoming learnable — though not yet reliable enough for the real world.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2508.06266" style="color:#1a1a2e;text-decoration:none;">ADPro: A Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zezeng Li, Rui Yang, Ruochen Chen, Zhong Xuan Luo, Liming Chen
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2025) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2508.06266" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2508.06266" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>When a robot needs to pick up a mug or turn a dial, it has to plan a smooth sequence of movements. A recent popular method called "diffusion policy" generates these movement plans the same way AI generates images — starting from random noise and gradually refining it into a coherent action. The problem? This refinement process has no physical intuition. It's like trying to solve a maze by scribbling randomly and hoping the scribbles gradually form a path, when you could instead start by pointing in roughly the right direction. Robots using standard diffusion policies waste computation and sometimes generate physically implausible motions because the system doesn't leverage basic geometric knowledge about where the robot's hand is relative to the object.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>ADPro adds two pieces of common sense to the diffusion policy framework, both applied at test time (meaning you don't need to retrain the base model).</p>
+<p style='margin:8px 0;'>First, "manifold-constrained denoising": instead of letting the noise-to-action refinement wander freely through all possible movements, they constrain it to stay on a geometric surface that respects the spatial relationship between the robot's gripper and the target object. Imagine you're reaching for a doorknob — your hand naturally moves along an arc toward it, not in random zigzags. ADPro mathematically enforces this kind of structure.</p>
+<p style='margin:8px 0;'>Second, "task-aware initialization": rather than starting the planning process from pure random noise, they compute a rough initial guess of the needed motion by aligning the 3D shape of the gripper with the target scene. It's like giving someone driving directions that start with "head north" rather than "spin in circles until the GPS recalculates."</p>
+<p style='margin:8px 0;'>Critically, both techniques are plug-and-play — they can be added to any existing diffusion policy without retraining from scratch.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>+9 percentage points</strong> in task success rate over the strongest existing diffusion policy baselines</li>
+<li style="margin-bottom:6px;"><strong>25% faster</strong> action generation (fewer denoising steps needed because the starting point is better)</li>
+<li style="margin-bottom:6px;">Tested across <strong>three major benchmarks</strong>: RLBench (simulated diverse tasks), CALVIN (long-horizon sequential manipulation), and real-world robot experiments</li>
+<li style="margin-bottom:6px;">The method generalizes across different object shapes and positions — not just memorizing specific scenarios</li>
+<li style="margin-bottom:6px;">Works as a plug-in enhancement to existing trained models (no expensive retraining)</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Diffusion policies are rapidly becoming the default approach for robot manipulation learning. ADPro shows that injecting geometric common sense — rather than just throwing more data at the problem — can significantly boost performance. Since it works at test time without retraining, any team already using diffusion policies could potentially adopt this immediately. This nudges the field toward robots that plan movements more efficiently and reliably, which matters for real-time applications where every millisecond counts.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The 9-point improvement is meaningful but the absolute success rates on complex tasks are still not high enough for deployment without human oversight. The geometric constraints assume you can reliably estimate where the target object is — if perception fails, the constraints could actually hurt. And while "plug-and-play" sounds easy, integrating this into production robotics stacks with safety requirements adds engineering complexity the paper doesn't address.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Adding spatial common sense to robot motion planning through geometry-aware constraints makes diffusion policies 25% faster and significantly more successful — without requiring retraining.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://www.mdpi.com/2073-431X/15/4/219" style="color:#1a1a2e;text-decoration:none;">Energy-Efficient Dual-Core RISC-V Architecture for Edge AI Acceleration with Dynamic MAC Unit Reuse</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Authors from MDPI Computers Journal
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> MDPI Computers (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://www.mdpi.com/2073-431X/15/4/219" style="color:#27ae60;">Read Paper</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI is moving to the edge — into security cameras, drones, medical wearables, and factory sensors. These devices need to run neural network models locally (for speed, privacy, or because they lack internet access), but they operate on tiny batteries with strict power budgets. Today's options are either too power-hungry (GPUs), too expensive (custom AI chips), or too inflexible (fixed-function accelerators that can only run specific models). What's needed is a processor architecture that's energy-efficient, general-purpose enough to run diverse AI models, and cheap enough to deploy in billions of devices.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers designed a dual-core processor based on RISC-V (an open-source processor architecture — think of it as the "Linux of hardware," free for anyone to use and modify). Their key insight is resource sharing under contention: instead of giving each processor core its own expensive Multiply-Accumulate unit (the mathematical workhorse of neural networks), they share a single MAC unit between two cores through a clever arbitration system.</p>
+<p style='margin:8px 0;'>Think of it like two cooks sharing one high-end oven. When Cook A needs the oven, they get priority. When Cook A is doing prep work (not using the oven), Cook B can use it for background baking. A queuing system (FIFO arbitration) ensures fairness and prevents conflicts. Meanwhile, a built-in Neural Processing Unit handles common AI operations (convolutions, matrix multiplications, pooling) as background tasks whenever the shared MAC unit has spare cycles.</p>
+<p style='margin:8px 0;'>The system also implements dynamic frequency scaling — like a car that automatically shifts gears to save fuel when cruising versus accelerating — to match power consumption to the current workload.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Successfully implements neural network inference (CONV, GEMM, POOL) on a power budget suitable for <strong>battery-powered edge devices</strong></li>
+<li style="margin-bottom:6px;">Dual-core design with <strong>shared MAC unit</strong> reduces silicon area (and therefore cost) compared to duplicating compute resources</li>
+<li style="margin-bottom:6px;"><strong>Dynamic frequency scaling</strong> allows trading performance for power savings in real-time based on workload</li>
+<li style="margin-bottom:6px;">FIFO-based arbitration ensures <strong>deterministic, fair resource sharing</strong> — critical for real-time safety applications</li>
+<li style="margin-bottom:6px;">Built on <strong>open-source RISC-V ISA</strong>, reducing licensing costs and enabling customization</li>
+<li style="margin-bottom:6px;">Prototyped on FPGA, demonstrating practical feasibility</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>As AI moves from the cloud to billions of edge devices, the processors powering them need to be cheap, energy-efficient, and flexible. This design shows how to get AI acceleration without the cost of dedicated AI chips, using an open-source architecture anyone can manufacture. If this approach gains traction, it could make on-device AI affordable for applications that currently rely on cloud processing — home health monitoring, agricultural sensors, or smart infrastructure in regions with poor connectivity.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The paper demonstrates the architecture on FPGA (a prototype platform), not as a manufactured chip — real-world power and performance numbers from silicon would be more convincing. Sharing one MAC unit between two cores creates contention that could become a bottleneck under heavy AI workloads. The specific author details and absolute performance benchmarks aren't fully transparent in the available literature, making it harder to compare directly against commercial solutions like ARM's Ethos NPU or Google's Edge TPU.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A dual-core RISC-V design that shares a single AI math unit between two processors through smart arbitration could bring affordable neural network inference to battery-powered edge devices.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://www.mdpi.com/2079-9292/15/2/414" style="color:#1a1a2e;text-decoration:none;">A Unified FPGA/CGRA Acceleration Pipeline for Time-Critical Edge AI: Case Study on Autoencoder-Based Anomaly Detection in Smart Grids</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Eleftherios Mylonas, Chrisanthi Filippou, Sotirios Kontraros, Michael Birbas, Alexios Birbas
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> MDPI Electronics (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://www.mdpi.com/2079-9292/15/2/414" style="color:#27ae60;">Read Paper</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Smart power grids generate enormous amounts of sensor data that needs to be analyzed in real-time to detect cyberattacks, equipment failures, or unusual energy patterns. Sending all this data to a cloud server adds dangerous delays — by the time an anomaly is detected remotely, a grid failure could already be cascading. Running AI directly on edge hardware (near the sensors) solves the latency problem, but today's tools for deploying AI on specialized chips are a mess: every hardware platform has its own incompatible toolchain, making it nearly impossible to compare options or switch between them. Engineers end up locked into one vendor's ecosystem with no way to know if they made the optimal choice.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team built a unified, open-source pipeline that lets engineers write their AI model once and deploy it to two very different types of hardware through a single workflow. Think of it like a universal adapter for AI chips.</p>
+<p style='margin:8px 0;'>The pipeline has three layers. At the top: the Brevitas library, which shrinks neural network calculations from 32-bit precision down to 4 or 8 bits (like compressing a high-res photo to a smaller file — you lose a tiny bit of quality but save enormous resources). In the middle: a common interface that speaks to two different backends. At the bottom: two hardware targets. FINN generates high-speed dataflow designs for FPGAs (field-programmable chips that can be rewired for specific tasks), while CGRA4ML targets ultra-low-power coarse-grained reconfigurable arrays (a newer architecture optimized for AI at minimal power).</p>
+<p style='margin:8px 0;'>They validated the whole pipeline on a real application: detecting anomalies in a simulated smart grid using an autoencoder neural network — an AI that learns what "normal" grid behavior looks like and flags anything unusual.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>10x faster inference</strong> through the CGRA4ML path compared to running the same model in software</li>
+<li style="margin-bottom:6px;"><strong>37x faster inference</strong> through the FINN/FPGA dataflow path</li>
+<li style="margin-bottom:6px;"><strong>11x higher energy efficiency</strong> compared to software execution on standard processors</li>
+<li style="margin-bottom:6px;"><strong>Fully open-source</strong> pipeline — no proprietary tools required</li>
+<li style="margin-bottom:6px;">Successfully demonstrated on a <strong>realistic cyber-physical testbed</strong> (not just synthetic benchmarks)</li>
+<li style="margin-bottom:6px;">Single quantization frontend (Brevitas) works for both hardware backends, enabling <strong>apples-to-apples Power-Performance-Area comparison</strong></li>
+<li style="margin-bottom:6px;">Anomaly detection accuracy maintained despite aggressive quantization to low bit-widths</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Critical infrastructure (power grids, water systems, transportation) increasingly depends on AI monitoring, but deploying AI on edge hardware has been fragmented and vendor-locked. By providing a standardized, open-source pipeline that targets multiple hardware architectures, this work lets engineers make informed choices and swap hardware without rewriting their AI models. For smart grids specifically, 37x faster anomaly detection could mean catching a cyberattack or equipment failure in milliseconds instead of seconds — potentially preventing cascading blackouts.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The evaluation uses one specific application (autoencoder anomaly detection) — performance gains may differ for more complex models like transformers or large convolutional networks. FPGA and CGRA hardware is still more expensive than standard microcontrollers, limiting deployment at massive scale. The pipeline's "unified" nature relies on Brevitas for quantization, which may not support every neural network architecture or achieve optimal results for all model types. Real grid deployment would also need to address cybersecurity of the edge hardware itself.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An open-source pipeline that deploys AI to two different chip architectures through one unified workflow achieves up to 37x speedup for smart grid anomaly detection — solving the fragmentation problem that has plagued edge AI deployment.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
