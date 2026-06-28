@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of June 28, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2603.06938" style="color:#1a1a2e;text-decoration:none;">Swimba: Switch Mamba Model Scales State Space Models</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zhixu Du, Krishna Teja Chitty-Venkata, Murali Emani, Venkatram Vishwanath, Hai Helen Li, Yiran Chen
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2603.06938" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2603.06938" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Today's most powerful AI language models — the ones behind chatbots, code assistants, and translation tools — are almost all built on a design called the Transformer. Transformers are brilliant, but they have a scaling problem: as the text they process gets longer, the computational cost grows rapidly. A newer architecture called Mamba (a type of "state space model") processes text in a straight line, like reading a book page by page, which makes it much cheaper for long documents. But here's the catch: when researchers try to make Mamba more powerful using a popular trick called "mixture of experts" — essentially letting the model consult multiple specialist sub-networks for each piece of text — the costs balloon right back up, defeating the whole purpose.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The Duke University and Argonne National Laboratory team behind Swimba realized that the obvious way to add experts to Mamba was the wrong way. Think of it like this: imagine you run a newsroom with one editor who reads every story start to finish (that's Mamba's "state" — its running memory). The naive approach to adding experts is like hiring five editors who each independently read every story — you get more opinions, but five times the reading. Swimba's insight is to keep just one editor but let them consult a rotating panel of specialists on specific questions as they read. Technically, instead of duplicating the entire state-tracking machinery for each expert (which is what makes it expensive), Swimba mixes expert knowledge in the model's parameter space while maintaining a single state trajectory. The model routes each piece of input to the most relevant expert's parameters, blends the result, and then updates its single running memory just once. The authors also provide mathematical proofs that this approach is stable and well-defined — not just a hack, but a principled design.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Under matched computational budgets (same FLOPs), Swimba achieves slightly better average performance than standard Mamba baselines.</li>
+<li style="margin-bottom:6px;">The real-time speed penalty is minimal — the single-state-trajectory design avoids the compute explosion that plagues naive expert-Mamba combinations.</li>
+<li style="margin-bottom:6px;">The paper provides the first theoretical framework proving stability for MoE-parameterized state space models.</li>
+<li style="margin-bottom:6px;">The work also formally characterizes the relationship between the two possible MoE-SSM designs, giving future researchers a clear map of the design space.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This paper is part of a broader race to find credible alternatives to Transformers that can handle longer contexts more efficiently. If Mamba-style models can be scaled up effectively — and Swimba shows one viable path — it could eventually lead to AI systems that process entire books, codebases, or video streams at a fraction of today's energy cost. That matters for both the economics and the environmental footprint of AI.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The improvements over baseline Mamba are modest — "slightly better" is honest but not earth-shattering. The paper is also primarily a proof of concept on language modeling benchmarks; it remains to be seen whether this approach holds up at the scale of frontier models (hundreds of billions of parameters) or on diverse real-world tasks. The theoretical contributions are solid, but practical adoption will depend on whether the engineering community builds optimized implementations.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Swimba shows you can make Mamba smarter by adding specialist experts without making it slower — a necessary step if state space models are ever going to seriously challenge Transformers.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2506.18145" style="color:#1a1a2e;text-decoration:none;">Routing Mamba: Scaling State Space Models with Mixture-of-Experts Projection</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zheng Zhan, Liliang Ren, Shuohang Wang, Liyuan Liu, Yang Liu, Yeyun Gong, Yanzhi Wang, Yelong Shen
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2025) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2506.18145" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2506.18145" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Running large AI models is expensive — both in dollars and in electricity. A model like GPT-4 might have hundreds of billions of parameters, but for any given input, most of those parameters are doing nothing useful. The industry has embraced "mixture of experts" (MoE) as a solution: instead of activating every parameter for every input, only a small subset of specialist sub-networks fires at a time. This works beautifully with Transformers, but a newer, more efficient architecture called Mamba — which processes sequences in constant time regardless of length — has resisted this trick. Every previous attempt to bolt MoE onto Mamba either didn't help or actively made things worse.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team from Microsoft Research and Northeastern University took a surgical approach. Rather than trying to replace entire Mamba blocks with expert versions (which disrupts Mamba's carefully designed internal flow), they identified the specific linear projection layers inside Mamba — the parts that transform data as it enters and exits the core computation — as the right place to introduce expert routing. Think of Mamba as a factory assembly line with a single, precisely calibrated main machine. Previous attempts tried to swap out the main machine for multiple machines, which broke the flow. Routing Mamba (RoM) instead puts specialized workers at the loading and unloading docks — deciding how to prepare materials before they hit the line and how to refine products after. Crucially, they share routing decisions across these projection layers and lightweight sub-modules, so the overhead stays low. The model has 10 billion total parameters but only activates 1.3 billion for any given input.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>2.3x efficiency gain</strong>: RoM matches the language modeling quality of a dense Mamba model that uses 2.3 times more active (always-on) parameters.</li>
+<li style="margin-bottom:6px;"><strong>23% compute savings</strong>: Compared to simply making Mamba bigger the traditional way, RoM achieves equivalent performance with 23% fewer floating-point operations.</li>
+<li style="margin-bottom:6px;"><strong>Consistent across context lengths</strong>: Performance holds steady whether the model is processing short snippets or sequences up to 16,000 tokens — no degradation on longer inputs.</li>
+<li style="margin-bottom:6px;"><strong>Works in hybrid models too</strong>: RoM scales effectively in models that mix Mamba layers with Transformer attention layers, a practical configuration many teams are exploring.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is a significant practical result because it shows Mamba-style models can be scaled up cheaply. If you can get the same quality with 23% less compute, that translates directly to lower cloud bills and reduced energy consumption. For companies building AI products, this kind of efficiency gain compounds quickly at scale. It also strengthens the case for Mamba as a viable production architecture, not just a research curiosity.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The experiments top out at 10 billion total parameters (1.3B active), which is still small by frontier model standards. Whether RoM's benefits hold at 100B+ scale is an open question. The paper also focuses exclusively on language modeling; performance on downstream tasks like reasoning, coding, or instruction-following hasn't been tested. And as with all MoE approaches, the total model size (10B parameters on disk) is much larger than the active size, which matters for deployment on devices with limited memory.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Routing Mamba proves that Mamba can be scaled efficiently with mixture-of-experts — matching models 2.3x its active size — making it a serious contender for cost-effective large-scale AI.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2605.18722" style="color:#1a1a2e;text-decoration:none;">Dexora: Open-source VLA for High-DoF Bimanual Dexterity</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zongzheng Zhang, Jingrui Pang, Zhuo Yang, Kun Li, Minwen Liao
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> ICRA 2026 (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2605.18722" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2605.18722" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Most robots in factories and warehouses today have simple grippers — essentially mechanical claws that can open and close. They're fine for picking up boxes, but ask one to thread a needle, fold a shirt, or use a screwdriver, and it's hopeless. The dream of robotics has always been human-like hands that can do the intricate, coordinated work our own hands do: one hand holds the jar while the other twists the lid. To get there, robots need two dexterous hands working together, each with many independently controllable joints ("degrees of freedom"). Teaching a robot to coordinate all those joints simultaneously — potentially 30+ moving parts — is extraordinarily difficult, and until now, no open-source system has seriously attempted it.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Dexora is the first open-source system that trains a single AI model to see (through cameras), understand language instructions, and directly control two dexterous robot hands at once. The approach is called a Vision-Language-Action model (VLA) — it takes in camera images and a text command like "pass the screwdriver from your left hand to your right," and outputs precise joint angles for every finger on both hands. Building this required solving a data problem first. The team created 100,000 simulated training scenarios (6.5 million individual frames) matched to their specific robot hardware, plus 10,000 real-world demonstrations recorded through teleoperation — a human wearing motion-capture gloves to guide the robot through tasks. But not all demonstrations are equally good, so they built a "quality discriminator" — an AI judge that watches each demonstration clip and assigns it a quality score. During training, high-quality demonstrations get more influence, and sloppy ones get downweighted. The actual policy is trained using a diffusion-transformer architecture, which generates actions the same way image-generation AI creates pictures: starting from noise and gradually refining toward a precise movement plan.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>First open-source system</strong> for dual-arm, dual-hand high-DoF manipulation using a unified VLA model.</li>
+<li style="margin-bottom:6px;"><strong>Significantly outperforms prior VLA baselines</strong> on high-DoF benchmarks, including tasks like object handover between hands, coordinated assembly, and tool use.</li>
+<li style="margin-bottom:6px;"><strong>Massive training dataset</strong>: 6.5M simulated frames + 2.92M real-world frames, all carefully quality-weighted.</li>
+<li style="margin-bottom:6px;"><strong>The data-quality-aware training recipe</strong> — where bad demonstrations are automatically de-emphasized — proves essential; without it, performance drops substantially.</li>
+<li style="margin-bottom:6px;">Accepted at ICRA 2026, the premier robotics conference.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is a significant milestone for practical robotics. Two-handed dexterous manipulation is the gateway to robots that can work in homes, kitchens, and unstructured environments — places designed for human hands, not robot grippers. By making the system open-source, the team is enabling the entire robotics community to build on this work rather than having it locked away in a corporate lab.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>Dexora works in controlled lab settings, but real-world robustness remains unproven at scale. The system requires substantial training data (both simulated and real-world), and collecting 10,000 teleoperated demonstrations is expensive and time-consuming. Generalization to truly novel objects and tasks — ones very different from the training data — is still an open challenge for all VLA systems.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Dexora is the first open-source AI system that gives robots two dexterous hands they can actually coordinate, bringing us closer to robots that can do real, human-like manual work.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2510.02268" style="color:#1a1a2e;text-decoration:none;">Do You Know Where Your Camera Is? View-Invariant Policy Learning with Camera Conditioning</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Tianchong Jiang, Jingtian Ji, Xiangshan Tan, Jiading Fang, Anand Bhattad, Vitor Guizilini, Matthew R. Walter
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> ICRA 2026 (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2510.02268" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2510.02268" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Imagine you teach a robot to pick up a cup by showing it demonstrations from a camera mounted on the left side of a table. Now move that camera six inches to the right, or tilt it slightly, and the robot completely fails — even though nothing about the actual task has changed. This is a pervasive and frustrating problem in robot learning: policies trained through imitation ("watch me do it, then copy me") are often secretly memorizing the specific camera angle rather than truly understanding the task. In any real deployment — a factory where cameras get bumped, a home where furniture moves, or a fleet of robots with slightly different setups — this fragility is a dealbreaker.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The research team from TTI-Chicago and Toyota Research discovered something surprisingly simple and powerful: just tell the robot where its camera is. More precisely, they encode the camera's position and orientation (its "extrinsics") using a mathematical representation called Plucker coordinates — imagine each pixel in the image carrying a tiny arrow pointing from the camera out into the 3D world. This gives the robot's AI a geometric anchor: it knows not just what it sees, but from where it's seeing it. The team plugged this camera-conditioning approach into three popular robot learning architectures (ACT, Diffusion Policy, and SmolVLA) to show it works broadly, not just with one specific method. They also created a clever set of benchmark tasks that separate the camera angle from the background scenery, which let them prove that existing policies were "cheating" — using wallpaper patterns and table edges to figure out the camera position rather than actually understanding 3D space.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Dramatic improvement in viewpoint robustness</strong>: Policies with camera conditioning maintain strong performance even when the camera is moved to positions never seen during training, while standard policies collapse.</li>
+<li style="margin-bottom:6px;"><strong>Exposed a hidden flaw</strong>: Proved that existing policies rely on background visual shortcuts to infer camera pose — a strategy that breaks as soon as the environment changes.</li>
+<li style="margin-bottom:6px;"><strong>Works across three major policy architectures</strong> (ACT, Diffusion Policy, SmolVLA), showing the approach is general, not architecture-specific.</li>
+<li style="margin-bottom:6px;"><strong>No depth sensor needed</strong>: Camera-conditioned policies achieve robust control using only standard RGB cameras, eliminating the need for expensive depth sensors.</li>
+<li style="margin-bottom:6px;"><strong>Won the ICRA 2026 Best Paper Award on Robot Learning</strong>, the field's highest recognition.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This paper solves a problem that has quietly sabotaged real-world robot deployments for years. The fix is elegant and practical — you don't need new hardware or a fundamentally different AI architecture, just a mathematically principled way to tell the model where the camera is. For anyone deploying robots at scale, this removes a major source of brittleness and makes it realistic to train a policy once and deploy it across robots with different camera configurations.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The approach requires knowing the camera's exact position and orientation, which is straightforward when cameras are mounted in known positions but harder if the camera is on a moving robot head or in an unknown environment. The benchmark tasks, while well-designed, are still simulated manipulation scenarios; real-world messiness (lighting changes, occlusions, vibrations) adds challenges this paper doesn't fully address.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Telling a robot where its camera is — a deceptively simple idea — dramatically fixes the fragile viewpoint dependence that has plagued robot learning, earning it ICRA 2026's top robot learning award.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2506.18530" style="color:#1a1a2e;text-decoration:none;">Embedded FPGA Acceleration of Brain-Like Neural Networks: Online Learning to Scalable Inference</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Muhammad Ihsan Al Hafiz, Naresh Ravichandran, Anders Lansner, Pawel Herman, Artur Podobas
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2025) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2506.18530" style="color:#27ae60;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2506.18530" style="color:#27ae60;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Most AI today runs in massive data centers — think of it as sending every question to a factory across the country and waiting for the answer to come back. But many real-world applications need AI that runs right where the action is: in a sensor on a factory floor, a medical device on a patient, or a wildlife camera in a remote forest. These "edge" devices have tiny power budgets (think batteries, not power plants) and often can't rely on internet connectivity. Traditional deep learning models are like luxury SUVs — powerful but far too thirsty for these settings. The challenge is finding AI architectures that are naturally frugal enough for edge hardware while still being useful.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Researchers from KTH Royal Institute of Technology took a different approach entirely: instead of trying to shrink conventional neural networks to fit on small chips, they started with a brain-inspired network called BCPNN (Bayesian Confidence Propagation Neural Network) that is inherently lean. BCPNN mimics how the brain's cortex actually works — it uses sparse connections (most neurons are quiet most of the time, just like in your brain), local learning rules (each connection adjusts itself based on nearby activity, no need for a global "backpropagation" signal), and can learn without labeled data. The team then built a custom hardware accelerator for BCPNN on an FPGA — a type of chip that can be reconfigured, like a blank circuit board you can rewire for different tasks. They used a technique called High-Level Synthesis, which lets you describe what the chip should do in software and automatically translates it into hardware circuits. The resulting system runs on a Zynq UltraScale+ chip (a common industrial FPGA) and supports both on-device learning (the network keeps improving as it sees new data, without needing a cloud connection) and fast inference.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>38x speedup</strong> over software execution on the same chip's ARM processor — tasks that took seconds now complete in milliseconds.</li>
+<li style="margin-bottom:6px;"><strong>Under 2 watts</strong> of power consumption — roughly equivalent to a dim nightlight, making it viable for battery-powered and energy-harvesting devices.</li>
+<li style="margin-bottom:6px;"><strong>First-ever embedded FPGA accelerator</strong> specifically designed for BCPNN, proving the concept is implementable, not just theoretical.</li>
+<li style="margin-bottom:6px;"><strong>Supports online learning on-device</strong> — the system can adapt to new patterns without sending data to the cloud, which matters for privacy-sensitive and connectivity-limited applications.</li>
+<li style="margin-bottom:6px;"><strong>Variable and mixed precision</strong> support, allowing the system to trade off between accuracy and speed depending on the application's needs.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This work sits at the intersection of two important trends: the push to move AI processing to the edge (for latency, privacy, and energy reasons), and the growing interest in brain-inspired computing as an alternative to conventional deep learning. If neuromorphic networks like BCPNN can deliver useful intelligence at 2 watts, it opens the door to AI in places where conventional approaches are simply impossible — continuous health monitoring, environmental sensors in remote areas, or autonomous micro-robots.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>BCPNN is not as well-understood or as versatile as mainstream architectures like transformers or convolutional networks. The benchmarks used are relatively simple compared to what cutting-edge deep learning tackles, so it's unclear how BCPNN would perform on complex tasks like natural language or high-resolution vision. The 38x speedup is measured against a relatively weak ARM processor baseline, not against a GPU or a dedicated neural network accelerator, so the comparison flatters the FPGA somewhat. This is a promising proof of concept, not a production-ready system.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>By putting a brain-inspired neural network on a 2-watt FPGA chip, this work proves that useful AI can learn and run on the extreme edge — no cloud, no GPU, no wall outlet required.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
