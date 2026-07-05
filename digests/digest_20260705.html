@@ -145,7 +145,7 @@
 <p style='margin:8px 0;'>This paper's message is refreshingly humble: the fancy solution may be overkill. Some researchers monitor AI outputs with elaborate statistics that accumulate evidence over time (called "sequential hypothesis testing") before deciding to sound the alarm. The authors instead test the simplest possible design. They take a second AI — a "verifier" that scores how trustworthy an answer looks — and simply set a threshold: if the score drops below the line, ring the alarm. The clever part is <em>where</em> they put the line. They use "risk control," a statistical calibration method that lets you set the threshold so the alarm's error rate stays below a level you choose in advance — giving you a mathematical guarantee rather than a guess. It's the difference between eyeballing your smoke detector's sensitivity versus tuning it so it's certified to miss no more than, say, 1% of real fires.</p>
 <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
 <ul style="margin:8px 0;padding-left:20px;">
-<li style="margin-bottom:6px;">The simple threshold-plus-calibration monitor is *competitive* with the more sophisticated sequential-testing monitors on two test settings: mathematical reasoning problems and red-teaming (deliberate attack) datasets.</li>
+<li style="margin-bottom:6px;">The simple threshold-plus-calibration monitor is competitive with the more sophisticated sequential-testing monitors on two test settings: mathematical reasoning problems and red-teaming (deliberate attack) datasets.</li>
 <li style="margin-bottom:6px;">The calibration gives a formal statistical guarantee on the alarm's error rate, not just empirical performance.</li>
 <li style="margin-bottom:6px;">Practically, it's far cheaper and easier to deploy than the complex alternatives.</li>
 </ul>
@@ -183,7 +183,7 @@
 <ul style="margin:8px 0;padding-left:20px;">
 <li style="margin-bottom:6px;">Achieved a 71.67% average success rate across six real-world contact-rich manipulation tasks — tested on physical hardware, not just simulation.</li>
 <li style="margin-bottom:6px;">Outperformed a competing method, Fast-WAM, by 26.67 percentage points, and OmniVTLA by 35.84 percentage points — large, not marginal, gains.</li>
-<li style="margin-bottom:6px;">Ablation studies (removing pieces to see what matters) confirmed that both modeling how touch evolves over time *and* focusing on touch during contact were each essential.</li>
+<li style="margin-bottom:6px;">Ablation studies (removing pieces to see what matters) confirmed that both modeling how touch evolves over time and focusing on touch during contact were each essential.</li>
 </ul>
 <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
 <p style='margin:8px 0;'>Touch is the missing sense holding back practical robots. A system that models how contact unfolds over time — rather than reacting blindly — is a meaningful step toward robots that can do fiddly assembly, kitchen tasks, and careful handling. The gains here are big enough to signal a genuinely better recipe, not a rounding-error improvement.</p>
