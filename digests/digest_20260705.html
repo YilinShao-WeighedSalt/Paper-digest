@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of July 05, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.02517v1" style="color:#1a1a2e;text-decoration:none;">WorldDirector: Building Controllable World Simulators with Persistent Dynamic Memory</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Hanlin Wang, Hao Ouyang, Qiuyu Wang, Wen Wang, Qingyan Bai
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.02517v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.02517v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Today's AI video generators can make a beautiful clip, but they have no real memory. If a car drives off the left side of the screen and comes back ten seconds later, the AI often "forgets" what that car looked like and reinvents it — a different color, a different shape. That's fine for a five-second demo, but useless if you want to build a persistent virtual world (think a video game, a movie scene, or a training simulator for a robot) where objects have to stay consistent over minutes. The same failure shows up with the camera: pan away and pan back, and the room may have quietly rearranged itself. For any application that treats generated video as a real, explorable environment, this inconsistency is a dealbreaker.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Imagine a film set. Most AI video tools try to be the cinematographer and the physics of the scene at the same time — they paint each frame while simultaneously guessing how things should move, and the two jobs get tangled together. WorldDirector splits these into two roles, like a movie production. A "director" (powered by a large language model — the same kind of AI behind ChatGPT) plans the scene: it decides the 3D paths objects take and where the camera moves, writing out a kind of stage-direction script. Only then does a separate "camera crew" (the video generator) render the actual pixels, following that script exactly. Because the plan lives separately from the pixels, the system keeps a persistent record of every object's identity and position — so when the car returns, it comes back as the same car.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Objects keep their exact appearance even after leaving the frame for long stretches, which the authors call "persistent dynamic object memory" — a known weak spot for prior systems.</li>
+<li style="margin-bottom:6px;">Supports "unrestricted viewpoint exploration": you can move the virtual camera freely rather than being locked to one angle.</li>
+<li style="margin-bottom:6px;">Enforces consistent physics because motion is planned in 3D up front, rather than hallucinated frame-by-frame.</li>
+<li style="margin-bottom:6px;">The work is demonstrated qualitatively (project page with videos); the abstract does not report head-to-head numerical benchmark scores.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is a step toward "world models" — AI you can walk around inside and that stays coherent. That matters for anyone building simulators to train robots or self-driving cars, for game studios wanting to generate playable worlds, and eventually for filmmakers. The separation of planning from rendering is a clean idea other teams will likely borrow, because it turns an unruly one-shot generation problem into two smaller, more controllable ones — and the "director" script it produces along the way is itself a reusable, editable representation of the scene.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The abstract shows off capabilities but gives no hard numbers, so we can't yet judge how it stacks up quantitatively against competitors. Leaning on a language model to choreograph 3D motion also invites errors when the plan itself is wrong, and generating long, high-resolution video remains computationally heavy. This is a promising research prototype, not a shipping product.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An AI video generator that finally remembers what things look like when they come back on screen, by letting a "director" plan the scene before the "camera crew" paints it.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.02516v1" style="color:#1a1a2e;text-decoration:none;">Alignment Is All You Need For X-to-4D Generation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Qiaowei Miao, Kehan Li, Yawei Luo, Yi Yang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.02516v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.02516v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>We can already turn a text prompt or a photo into a still 3D model. The hard next step is "4D" — a 3D object that also moves realistically over time (the fourth dimension is time). Building this normally requires huge, expensive datasets and one-off methods for each type of input. If you want a system where a user can throw in <em>anything</em> — a sentence, an image, a video clip, or a rough 3D shape — and get back a moving 3D scene, no flexible tool really exists. Concretely: imagine handing a game studio a ten-word description and a phone video of a dog running, and getting back a fully rigged, animated 3D dog that could drop straight into a scene. That is the kind of "input-agnostic" pipeline the field has been missing.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Think of making a moving 3D sculpture where you have two different reference photos that don't quite agree with each other. One reference (a video) tells you how the thing should <em>move</em>; another (3D data) tells you what its <em>shape</em> should be from all angles. The trick, and the paper's whole thesis, is getting these references to "align" so they don't fight. Their system, Align4D, does this with three ideas: it figures out the right distance and scale to place the object so it lines up with both the video and the 3D views; it locks the motion and the geometry together so a movement in front doesn't break the shape in back; and it trains the "what it looks like" and "how it deforms" parts separately so each can be tuned without muddying the other. They also built a new benchmark dataset, X4D, so this kind of "anything-to-4D" work can be measured fairly.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Accepts genuinely mixed inputs — text prompt, image, video, or 3D — and produces coherent moving-3D output, which most prior methods can't flexibly do.</li>
+<li style="margin-bottom:6px;">Reports state-of-the-art quality and consistency on both their new X4D benchmark and the existing Consistent4D benchmark.</li>
+<li style="margin-bottom:6px;">Contributes the X4D dataset itself, which is arguably as valuable as the method because it gives the field a common yardstick.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This pushes toward a world where a designer, game developer, or animator describes a moving object in whatever form is convenient and gets a usable animated 3D asset back. Lowering that barrier could reshape content creation, virtual reality, and simulation, because the bottleneck in these industries is rarely the final render — it's the slow, skilled labor of building and animating assets in the first place. A tool that meets creators wherever their input happens to live removes a real friction point.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>"State-of-the-art" here is measured on research benchmarks, which don't always translate to production-quality assets an artist would ship without cleanup. These optimization-based 4D methods are typically slow, and the abstract doesn't discuss generation time or how it handles complex multi-object scenes. It's a strong research advance, not yet a one-click tool.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A single system that turns text, images, video, <em>or</em> 3D input into a moving 3D object — its secret is forcing the motion and shape references to agree with each other.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.02515v1" style="color:#1a1a2e;text-decoration:none;">PointDiT: Pixel-Space Diffusion for Monocular Geometry Estimation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Haofei Xu, Rundi Wu, Philipp Henzler, Nikolai Kalischek, Michael Oechsle
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.02515v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.02515v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Estimating the 3D shape of a scene from a single ordinary photo is a foundational problem — it's how a robot, an AR headset, or a self-driving car understands depth and layout from one camera. The best methods have become Rube Goldberg machines: stacks of specialized components, hand-tuned loss functions, and tricks to squeeze 3D geometry into the compressed "latent" formats of borrowed image-generation models. All that complexity is fragile and hard to build on. A concrete example of where it matters: a warehouse robot glancing at a single camera frame has to instantly infer how far away a shelf edge is before it reaches for a box — and today's best systems get there through a tangle of moving parts that few teams can maintain.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The authors' bet is that most of that complexity is unnecessary. Picture the difference between translating a document by first boiling it down to shorthand, translating the shorthand, then expanding it back — versus just translating it directly. Prior methods use the shorthand route ("latent space") because it lets them reuse existing image models. PointDiT skips the shorthand entirely and works directly on raw 3D data: it takes small patches of a "point map" (a grid where every pixel carries its real 3D position) and uses a diffusion model — the same denoising technique behind AI image generators, which learns by repeatedly cleaning up noise into structure — to reconstruct geometry from scratch. To know what it's looking at, it's fed image features from DINOv3, a strong off-the-shelf vision model. No special encoders, no compression, no elaborate loss recipes — just a plain, standard transformer working on real 3D numbers.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Beats more complex latent-diffusion methods despite being dramatically simpler, and is simpler than the hybrid architectures too.</li>
+<li style="margin-bottom:6px;">Produces sharper geometric detail — edges and fine structure come out crisper.</li>
+<li style="margin-bottom:6px;">More robust in genuinely ambiguous cases like transparent objects (glass, water), where depth is notoriously hard to guess.</li>
+<li style="margin-bottom:6px;">Trains its diffusion core entirely from scratch, avoiding dependence on a pre-trained tokenizer.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is a "less is more" result, and those tend to be influential because simpler systems are easier to understand, reproduce, and extend. If a plain, from-scratch model beats the elaborate ones, it resets the baseline the whole single-image-3D field builds on — good news for robotics, AR/VR, and 3D content pipelines. It also lowers the barrier to entry: a small lab or startup can plausibly reproduce and extend a plain transformer far more easily than a bespoke hybrid stack, which tends to accelerate progress across the whole community.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>It still leans on DINOv3, so it's not truly from-scratch end to end, and single-image 3D is fundamentally ambiguous — no method can fully resolve what a camera never saw. The abstract doesn't give runtime or resolution details, which matter for on-device use. Promising and elegant, but the real test is whether others reproduce the "simple beats complex" claim.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Guessing 3D shape from one photo turns out to work better when you throw away the fancy machinery and let a plain model work directly on raw 3D points.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.02510v1" style="color:#1a1a2e;text-decoration:none;">Online Safety Monitoring for LLMs</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Mona Schirmer, Metod Jazbec, Alexander Timans, Christian Naesseth, Maja Waldron
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.02510v1" style="color:#27ae60;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.02510v1" style="color:#27ae60;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Even after safety training, AI chatbots can still produce harmful, false, or unsafe answers — and they do it live, in front of real users. Companies need a smoke detector: something watching the model's output in real time that raises an alarm the moment answers can no longer be trusted. But smoke detectors that are too jumpy cry wolf constantly, and ones too lax miss the fire. Getting that tradeoff right, with a guarantee, is the problem. Picture a hospital using an AI assistant to draft answers for nurses: a monitor that misses a dangerous mistake is a liability, but one that flags every third harmless answer will simply be switched off. Neither extreme is acceptable.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>This paper's message is refreshingly humble: the fancy solution may be overkill. Some researchers monitor AI outputs with elaborate statistics that accumulate evidence over time (called "sequential hypothesis testing") before deciding to sound the alarm. The authors instead test the simplest possible design. They take a second AI — a "verifier" that scores how trustworthy an answer looks — and simply set a threshold: if the score drops below the line, ring the alarm. The clever part is <em>where</em> they put the line. They use "risk control," a statistical calibration method that lets you set the threshold so the alarm's error rate stays below a level you choose in advance — giving you a mathematical guarantee rather than a guess. It's the difference between eyeballing your smoke detector's sensitivity versus tuning it so it's certified to miss no more than, say, 1% of real fires.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">The simple threshold-plus-calibration monitor is *competitive* with the more sophisticated sequential-testing monitors on two test settings: mathematical reasoning problems and red-teaming (deliberate attack) datasets.</li>
+<li style="margin-bottom:6px;">The calibration gives a formal statistical guarantee on the alarm's error rate, not just empirical performance.</li>
+<li style="margin-bottom:6px;">Practically, it's far cheaper and easier to deploy than the complex alternatives.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>As AI gets embedded in high-stakes settings — medicine, finance, customer support — real-time safety monitoring becomes mandatory infrastructure. Showing that a simple, guaranteed method matches complicated ones means safety monitoring can be cheap and widely adopted, rather than a luxury only big labs can afford.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The monitor is only as good as the external verifier it depends on — a weak or biased verifier means a weak monitor, and clever attackers may learn to fool the verifier. "Competitive with" advanced methods is not "better than," and results come from two specific datasets, so broader real-world robustness is unproven. It's a solid, sensible building block, not a complete safety system. The guarantee also holds only under the statistical assumptions of the calibration data, so a real deployment whose traffic drifts away from the test conditions would need periodic recalibration to keep its promise honest.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>For catching an AI's unsafe answers in real time, a simple calibrated threshold works about as well as the complicated statistical machinery — and it comes with a mathematical guarantee.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.02503v1" style="color:#1a1a2e;text-decoration:none;">VT-WAM: Visual-Tactile World Action Model for Contact-Rich Manipulation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Shuai Tian, Yupeng Zheng, Yuhang Zheng, Songen Gu, Yujie Zang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.02503v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.02503v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Robots are great at tasks they can <em>see</em> but clumsy at tasks they must <em>feel</em>. Plugging in a USB cable, wiping a surface, or peeling a sticker depends on sensing pressure, slippage, and how a soft object deforms — cues a camera largely can't capture and that come and go in brief flashes. Without a real sense of touch, robots fumble exactly the delicate, contact-heavy jobs we'd most like to automate at home and in factories. Think of trying to button a shirt with numb fingers, or picking up a wine glass while wearing thick gloves — you can see the target perfectly, yet still fumble it because the fine-grained feel that guides the last inch is missing. That last inch is where most robot manipulation still breaks down.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Most touch-enabled robots use their fingertip sensors like a reflex — they read the current pressure and immediately decide the next move, never anticipating what the touch will feel like a moment later. VT-WAM instead teaches the robot to <em>imagine the future</em> across all its senses at once. Like a person reaching for an egg who mentally rehearses how it'll feel as they close their grip, the system jointly predicts three things together: what the camera will see next, how the touched object will squish and deform next, and what action to take — all inside one unified prediction engine. Two design tricks make it work: one mechanism ("Asymmetric Mixture-of-Transformers") ties a single reference image of the scene to the fast-changing stream of touch signals, and another ("contact-gated attention guidance") makes the robot lean heavily on its sense of touch precisely during the moments it's actually in contact, and ignore it otherwise.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Achieved a 71.67% average success rate across six real-world contact-rich manipulation tasks — tested on physical hardware, not just simulation.</li>
+<li style="margin-bottom:6px;">Outperformed a competing method, Fast-WAM, by 26.67 percentage points, and OmniVTLA by 35.84 percentage points — large, not marginal, gains.</li>
+<li style="margin-bottom:6px;">Ablation studies (removing pieces to see what matters) confirmed that both modeling how touch evolves over time *and* focusing on touch during contact were each essential.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Touch is the missing sense holding back practical robots. A system that models how contact unfolds over time — rather than reacting blindly — is a meaningful step toward robots that can do fiddly assembly, kitchen tasks, and careful handling. The gains here are big enough to signal a genuinely better recipe, not a rounding-error improvement.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>A 71.67% success rate means the robot still fails almost one time in three — nowhere near reliable enough for unsupervised deployment. Results cover six specific tasks with specialized tactile hardware, so generalization to new objects, sensors, and settings is unproven, and such systems are typically slow and data-hungry to train. Strong research progress, but real-world use is still some way off.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>By teaching a robot to imagine how a touch will feel a moment before it happens, this system markedly improves at delicate, hands-on tasks — though it still fails roughly a third of the time.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
