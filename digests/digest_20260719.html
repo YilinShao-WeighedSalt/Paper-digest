@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of July 19, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.15278v1" style="color:#1a1a2e;text-decoration:none;">Hierarchical Denoising For Multi-Step Visual Reasoning</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zezhong Qian, Xiaowei Chi, Chak-Wing Mak, Tianze Zhou, Ruibin Yuan
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.15278v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.15278v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI video models are great at producing realistic-looking clips, but they can't actually <em>think through</em> a problem step by step the way a person can. Imagine asking a system to solve a sliding-tile puzzle or plan a path through a maze by "picturing" the moves: today's models either rush ahead and make logically inconsistent guesses, or they think carefully but so slowly that they're useless for anything real-time, like a robot reacting to its surroundings.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The authors built a system called HDR that reasons in layers, from rough sketch to fine detail — a lot like how an architect works. Instead of drawing every window and doorknob first, the architect blocks out the overall shape of the building, then progressively fills in detail. HDR does the same with video: its "coarse" layers hold onto several possible plans at once (keeping its options open while it figures out the big picture), and its "fine" layers commit those plans to concrete, frame-by-frame images. Crucially, it does this in a streaming way — it starts producing output almost immediately rather than waiting to perfect the whole sequence — and it uses a shortcut (they call it sparse attention) so it doesn't waste effort comparing every moment to every other moment.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">On a suite of puzzle-style reasoning tasks (maze navigation, Tower of Hanoi, sliding puzzle, Sokoban, and more), success rate jumped from 34% to 60% versus the fast-but-shallow baseline — a 76% relative improvement.</li>
+<li style="margin-bottom:6px;">It's genuinely fast: 0.70 seconds per step, which is 54 times faster than the careful-but-slow "think about everything at once" approach.</li>
+<li style="margin-bottom:6px;">It learns efficiently. Trained on just 2% of the available data, it still retained 83% of its full performance, while the slow competitor kept only 52% — meaning HDR gets more out of less data.</li>
+<li style="margin-bottom:6px;">Early real-robot experiments suggest the same reasoning helps a physical robot interact with the world.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>The holy grail here is a system that can both plan carefully <em>and</em> act quickly — the combination you need for a robot that thinks on its feet. HDR is a credible step toward video models that don't just look realistic but actually reason about cause and effect, which is foundational for robots, autonomous agents, and any AI that has to operate in the messy physical world.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The wins are on clean, puzzle-like benchmarks the authors designed; the real-world robot results are described as "potential" rather than proven at scale. Zero citations and a fresh preprint mean this hasn't been independently vetted yet, and puzzle mastery doesn't automatically transfer to the unpredictability of a real kitchen or factory floor. It would need testing on genuinely open-ended, physical tasks before anyone leans on it.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A video-generating AI that reasons rough-to-fine, hitting near-human puzzle-solving while staying fast enough for real-time robots.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.15275v1" style="color:#1a1a2e;text-decoration:none;">RoboTTT: Context Scaling for Robot Policies</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yunfan Jiang, Yevgen Chebotar, Ruijie Zheng, Fengyuan Hu, Yunhao Ge
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.15275v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.15275v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Robots that learn from watching demonstrations have terrible short-term memory — most can only "remember" the last moment or two before deciding what to do next. That's fine for grabbing a cup, but it falls apart on long tasks like a ten-step assembly job, where what you did two minutes ago changes what you should do now. A person assembling furniture keeps the whole process in their head; robots have been stuck living in the moment.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>NVIDIA's team built RoboTTT, which gives a robot a working memory stretching back 8,000 moments — roughly a thousand times longer than the norm — without slowing it down. The clever trick is called "test-time training." Instead of storing a giant, ever-growing log of everything it has seen (which would get slower and slower to search), the robot continuously <em>rewrites its own internal settings on the fly</em> to absorb recent experience — think of it as taking quick mental notes and folding the lessons directly into muscle memory, rather than keeping a bulky diary it has to reread. Because the memory is baked into these fast-updating settings, retrieving it stays instant no matter how far back it reaches.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Overall performance on hard real-robot manipulation tasks improved 87% over the standard single-moment-memory baseline.</li>
+<li style="margin-bottom:6px;">It completed a five-minute, ten-stage assembly task from start to finish — something no baseline system ever managed even once.</li>
+<li style="margin-bottom:6px;">New abilities emerged: it could watch a single human video and imitate the task ("one-shot" learning), recover from being bumped or interfered with, and improve itself during a task.</li>
+<li style="margin-bottom:6px;">More memory during training kept paying off: the 8,000-step version beat the 1,000-step version by 62%, hinting that memory length is a new dial you can turn to make robots smarter.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This reframes how we make robots more capable. For years the recipe has been "bigger models, more data"; this work suggests "longer memory" is an independent and powerful lever. Robots that remember and reason over minutes of activity could finally handle the long, multi-step jobs — assembly, cooking, packing — that have kept them out of real workplaces.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a brand-new preprint from a corporate lab with impressive but self-reported results and no independent replication yet. The tasks, while genuinely long, are still controlled lab setups, and continuously rewriting a robot's own settings mid-task raises real questions about stability and safety that the paper only begins to address. Whether it holds up outside NVIDIA's benchmarks is unproven.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A robot with a thousand-times-longer memory that finally finishes multi-minute, multi-step tasks — suggesting memory length is the next big lever for robot intelligence.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.15273v1" style="color:#1a1a2e;text-decoration:none;">MeanFlowNFT: Bringing Forward-Process RL to Average-Velocity Generators</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yushi Huang, Xiangxin Zhou, Jun Zhang, Liefeng Bo, Tianyu Pang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.15273v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.15273v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>The AI systems that generate images and videos have gotten fast — some can produce a result in just a handful of steps instead of dozens — but making them fast usually means giving up some quality or control. Separately, there's a proven technique for nudging these generators toward what people actually want (sharper images, better-following-the-prompt), but it was designed for the slow generators and doesn't fit the fast ones. This paper is about getting the "make it better" technique to work on the "make it fast" generators.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Think of a fast image generator as a driver who only cares about <em>average speed</em> between two cities — it plans the whole trip in a few big leaps. The quality-improvement method, meanwhile, only knows how to give feedback about <em>instantaneous speed</em> at each moment — it's a coach who can only comment on how you're driving at this exact second. These two don't speak the same language. The authors, in a system called MeanFlowNFT, built a translator: from the fast generator's average-speed plan they mathematically reconstruct the moment-to-moment speeds the coaching method needs, apply the coaching, and then let the generator keep sampling in its fast, few-leap way. They also proved on paper that this translation doesn't break the method's guarantee of steady improvement.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">It beat the previous best quality-tuning methods for fast generators on 6 of 8 measures on one popular image model (SD3.5-M).</li>
+<li style="margin-bottom:6px;">In some cases it matched or beat the slow, multi-step generators while using only a few steps — getting near-premium quality at economy speed.</li>
+<li style="margin-bottom:6px;">On a video benchmark, a 4-step version scored 84.33, edging out a competing method that needed 50 steps (82.57) — over ten times fewer steps for a better score.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Fast generators are what make AI image and video tools affordable to run at scale — every step costs computing time and money. Bringing high-quality preference-tuning to these efficient generators means companies can offer better results without a proportional jump in cost, which matters for anyone building consumer-facing creative or design tools.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a fairly technical advance aimed at AI engineers, and the gains, while real, are incremental rather than transformative — a few points on benchmark scores, not a night-and-day leap a user would obviously notice. It's a fresh preprint with no independent verification, and "better on most metrics" still means it lost on some. Its value is in efficiency and cost, not a dramatic new capability.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A way to make cheap, fast AI image and video generators produce higher-quality results — better output at a fraction of the computing cost.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.15272v1" style="color:#1a1a2e;text-decoration:none;">SciDiagramEdit: Learning to Edit Scientific Diagrams from Paper Revisions</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yasheng Sun, Zezi Zeng, Yifan Yang, Chong Luo, Wenyi Wang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.15272v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.15272v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Anyone who has written a report knows the tedium of fixing figures: relabel this box, move that panel, recolor this arrow, redo it after every round of feedback. For scientists, editing the diagrams in a paper is a constant, time-consuming chore, and it's surprisingly hard to automate because a scientific figure isn't just a picture — it's a carefully arranged mix of charts, labels, arrows, and photos all working together to make an argument. Nudge one piece and the whole thing can look wrong.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team behind SciDiagramEdit had a neat insight: scientists have <em>already</em> been editing their own figures for years, and the evidence is public. Academic papers get posted in multiple versions, so you can line up the "before" and "after" of thousands of real figure edits and see exactly how researchers changed them and why. They mined these before/after pairs as a free training set. Then, rather than treating the figure as flat pixels, their system works on the figure's underlying editable building blocks (like the shapes and text in a slide, which you can grab and move individually). The AI improves through what they call "skill evolution": it tries edits, watches which ones work, and rewrites its own how-to guide over repeated rounds — essentially learning to be a better editor by grading its own homework and revising its playbook.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">The team created a first-of-its-kind benchmark built from real arXiv paper version histories, where every editing example is grounded in what the authors themselves actually intended to change.</li>
+<li style="margin-bottom:6px;">The self-improving "skill evolution" approach measurably increased editing accuracy over successive rounds on held-out test figures.</li>
+<li style="margin-bottom:6px;">Because it edits the figure's real building blocks rather than repainting pixels, a human can inspect and co-edit alongside the AI — a more practical, collaborative workflow.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>If this matures, it could shave real hours off the research writing process and, more broadly, points toward AI that edits structured documents — slides, diagrams, technical drawings — by instruction rather than by tedious manual clicking. The "learn from public revision history" idea is also clever and reusable: lots of work leaves a before/after trail we could learn from.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The paper reports accuracy improving on its own validation set but stops short of showing this works reliably on the wild variety of real figures scientists produce, and there are no numbers here comparing it head-to-head against strong alternatives. It's an early preprint, and figure editing is unforgiving — a subtly wrong edit can distort a scientific claim, so trust and human oversight remain essential.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An AI that learns to edit scientific figures by studying how researchers actually revised their own — promising, but still early-stage.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.15271v1" style="color:#1a1a2e;text-decoration:none;">Online Neural Space Time Memory for Dynamic Novel View Synthesis</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Baback Elmieh, Lynn Tsai, Zeman Li, Srinivas Kaza, Tiancheng Sun
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.15271v1" style="color:#27ae60;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.15271v1" style="color:#27ae60;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Picture trying to build a live, walk-around 3D view of a scene — say a dancer moving on a stage — from a handful of video cameras, in real time. The hard part is memory: when a moving person briefly blocks something behind them, the system needs to <em>remember</em> what that hidden area looked like so it can fill it back in. But keeping and constantly updating that memory is computationally expensive, and doing it every single frame is too slow for real-time use and tends to get unstable over long stretches.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The authors noticed that most video is highly repetitive — the scene barely changes from one frame to the next — so constantly overhauling the memory is wasteful. Their fix is to <em>separate how often the system updates its memory from how often it uses it</em>. It's like a chef who doesn't rewrite the whole recipe every thirty seconds; they refresh the plan occasionally but consult it constantly. So the system does the heavy job of updating its memory only periodically, while cheaply <em>applying</em> that memory on every single frame, using a technique that lines up the remembered scene with the current camera view. To keep the memory from degrading or "forgetting" over long sessions, they add two safeguards: one that actively forces the scene to stay internalized, and one that protects the memory against drifting off course.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Achieves real-time performance — fast enough for live use — on challenging scenes with dynamic human motion.</li>
+<li style="margin-bottom:6px;">Can memorize and reconstruct scenes over minute-long stretches without the instability that plagues frame-by-frame approaches.</li>
+<li style="margin-bottom:6px;">Reports state-of-the-art quality on dynamic scenes while meeting the strict speed budget, which is the trade-off that usually forces you to pick one or the other.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Real-time, free-viewpoint 3D from a few cameras is the enabling technology behind immersive video calls, live sports replays you can rotate around, telepresence, and AR/VR experiences. Making it run in real time — and importantly, without a giant server farm — is exactly what's needed to get this out of the lab and onto everyday devices.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The classification of this as an "embedded systems" advance is optimistic — the paper demonstrates real-time performance but doesn't clearly show it running on small, low-power hardware like a phone or headset, which is what "embedded" usually implies. It's a fresh preprint with self-reported results, tested on specific scene types, and reconstructing temporarily hidden regions is inherently a best-guess process that can still fail. Real-world deployment on constrained devices remains unproven.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A real-time way to build rotatable 3D views of moving scenes from a few cameras, by updating its memory sparingly but using it constantly — a building block for live immersive video.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
