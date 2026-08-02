@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of August 02, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.28628v1" style="color:#1a1a2e;text-decoration:none;">Learning to Trace Seiberg Dualities</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Jonathan J. Heckman, Shani Meynet, Alessandro Mininno, Gary Shiu
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.28628v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.28628v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Physicists often suspect that two very different-looking theories are secretly describing the same underlying reality — a relationship called a "duality." Confirming this by hand is like proving two tangled-up ropes are actually the same rope tied differently: the rules are known, but the search for the sequence of moves that connects them can be brutally slow. Being able to check this quickly matters because dualities are a core tool for understanding everything from exotic materials to the fundamental particles of the universe.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The authors turned this into a puzzle a computer can learn to solve, much like teaching an AI to untangle a knot. Each physics theory is drawn as a network of dots and connecting lines (a "quiver"), and proving two are dual means finding the right series of allowed rearrangements to turn one drawing into the other. They trained two kinds of AI — a "transformer" (the same family of model behind chatbots, good at spotting patterns in sequences) and a simpler pattern-matcher — to predict which moves get you closer to the goal. Then they bolted on a classic route-finding algorithm, essentially "Google Maps for these diagrams," to guide the search. The AI suggests promising directions; the map-finder efficiently plots the actual path.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">For moderately complex diagrams (around 10 nodes), the AI models <strong>beat traditional step-by-step algorithms</strong> at finding the connecting sequence.</li>
+<li style="margin-bottom:6px;">Pairing the AI with the pathfinding algorithm gave a <strong>further boost</strong> in both speed and accuracy — the two approaches complement each other rather than compete.</li>
+<li style="margin-bottom:6px;">The work doubles as a <strong>new benchmark</strong>: a concrete, hard problem for measuring how good future AI systems are at genuine theoretical-physics reasoning, not just plausible-sounding text.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is part of a growing movement to use AI as a genuine research assistant in fundamental science, not just for writing or image generation. If AI can reliably navigate these abstract structures, it could accelerate discoveries in theoretical physics and give researchers a way to measure whether ever-more-powerful AI models are actually getting smarter at real scientific reasoning. There's also a practical payoff the authors highlight: by watching how hard the AI has to work to connect two theories, they get a fresh way to gauge just how computationally complex a given duality really is — turning the AI itself into a measuring instrument.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The success is demonstrated on relatively small diagrams (about 10 nodes); real frontier physics problems can be far larger, and it's unclear how well the approach scales up before the search space explodes. This is also a specialized, proof-of-concept tool for one class of physics problems, not a general-purpose discovery engine — it speeds up a known type of check rather than proposing new physics, and it still leans on classic algorithms to do the final heavy lifting.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Researchers taught AI to prove when two physics theories are secretly the same, and it outpaced traditional methods — a promising test-bed for AI as a real scientific reasoner.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.28627v1" style="color:#1a1a2e;text-decoration:none;">ReToken: One Token to Improve Vision-Language Models for Visual Retrieval</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yao Xiao, Reuben Tan, Zhen Zhu, Yuqun Wu, Jianfeng Gao
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.28627v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.28627v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI models that "look" at images and video get overwhelmed when there's too much to see — hand them a long video or a pile of images and their accuracy drops as irrelevant details drown out the important ones. Worse, processing everything at once can exceed what even expensive hardware can hold in memory. Imagine asking an assistant "where are my keys in this two-hour security recording?" and having it choke because it insists on studying every single frame equally.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a clever shortcut called ReToken — think of it as a single trained "bookmark" that knows how to grab only the handful of visual details actually relevant to your question. Instead of forcing the model to reconsider an entire video or image set, ReToken acts as a smart filter that reaches into the model's memory and pulls out just the query-relevant pieces, ignoring the clutter. The remarkable part is how cheap this is: it's one small learnable component, trained on just a modest set of image-and-question examples, yet it teaches the model to focus its attention where it counts.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">On a benchmark designed to hide answers among many distracting images ("Visual Haystacks"), it boosted one leading model by <strong>13.4 points</strong> and another by <strong>12.4 points</strong> — improvements of <strong>over 20%</strong>.</li>
+<li style="margin-bottom:6px;">It <strong>transferred to long video without any additional training</strong> ("zero-shot"), delivering an 8-point gain on a video benchmark — impressive because it was only ever trained on still images.</li>
+<li style="margin-bottom:6px;">Both training and long-video processing <strong>fit on a single H100 GPU</strong>, meaning this doesn't require a warehouse of hardware to run.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>As AI increasingly works with long videos, document scans, and large photo collections, the ability to focus on what matters — cheaply — is a big deal. This makes powerful vision AI more practical for real applications like searching security footage, reviewing medical scans, or answering questions about lengthy recordings, without demanding enormous computing budgets. The fact that a filter trained only on still images improved long-video performance without retraining is especially encouraging: it hints that the "learn to focus" trick is general rather than tied to one narrow task, which is exactly what makes a technique worth adopting widely.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The gains are measured on research benchmarks, which don't always reflect messy real-world data, and the comparison models are a specific set rather than the entire field. And because ReToken's whole job is to narrow focus, there's an inherent risk it occasionally discards something that turns out to be relevant; how well it handles genuinely ambiguous questions — where the "answer" is scattered across many parts of a huge input — remains to be proven at scale.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A tiny, cheap "smart bookmark" lets AI find the needle in a haystack of images or video, boosting accuracy by over 20% on a single graphics card.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.28625v1" style="color:#1a1a2e;text-decoration:none;">ACE-Data-0: Human-Centric Ambient Capture as Embodied Data Engine</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yukang Cao, Haozhe Xie, Beichen Wen, Runmao Yao, Yinghao Liu
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.28625v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.28625v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Robots that we want to help around the house are starved for the right kind of training data. To learn a task like tidying a kitchen, a robot ideally needs to observe everything a human does at once — what they see, how their whole body and fingers move, what objects they touch, even the sounds and the feel of contact — all synchronized in time. Today's datasets capture these pieces separately and never quite fit them together, like trying to learn to cook from a stack of photos that don't line up with the recipe.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team built a "capture engine" (ACE) that turns ordinary homes into precisely instrumented recording studios. Picture a real house wired up so that as a person naturally goes about chores, cameras, motion sensors, microphones, and touch sensors record everything simultaneously and in lockstep. They run it at two zoom levels: a close-up "table-scale" setup that captures delicate hand-and-object movements, and a "room-scale" setup that captures a person walking around and interacting with the whole furnished space. Crucially, participants were given goals ("make breakfast") rather than rigid step-by-step scripts, so the recordings preserve the natural, varied way real people actually do things.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">The resulting dataset, <strong>ACE-Data-0</strong>, contains <strong>150 hours and 17 million video frames</strong> across <strong>200 task categories</strong>, from 50 people, totaling <strong>75,000 interaction episodes</strong>.</li>
+<li style="margin-bottom:6px;">It combines multiple synchronized "senses" at once — first-person and multiple outside-view videos, full-body and finger motion, object shapes and movements, audio, and touch — which existing datasets don't unify.</li>
+<li style="margin-bottom:6px;">When today's best AI methods were tested against it, they <strong>showed substantial weaknesses</strong> in handling physical contact, objects blocking the view, camera motion, and long multi-step tasks — revealing how far current systems still have to go.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Progress in robotics is increasingly bottlenecked by data, not just algorithms — much as language AI leapt forward once fed enormous text collections. A rich, synchronized record of humans naturally doing everyday tasks could become foundational fuel for training the next generation of home and assistant robots. Just as importantly, the paper's built-in benchmark gives the whole research community a shared yardstick — a common test that reveals precisely where today's methods break down, so the field can aim its efforts at the hardest gaps instead of guessing.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The dataset, while detailed, is still modest in scope — 50 people in just 2 environments — so it may not capture the full diversity of real homes, cultures, and household layouts. And it provides human demonstrations, not robot experience; bridging the gap between watching a human hand and controlling a robot gripper (which has different fingers, strength, and sensors) remains a hard, unsolved problem that this dataset enables work on but does not by itself solve.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Researchers wired up real homes to record humans doing chores with every "sense" in sync, creating a rich new training resource — and exposing how much today's robots still can't handle.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.28624v1" style="color:#1a1a2e;text-decoration:none;">PhiZero: A World Model Built Around Physical Language</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Shuyao Shang, Yuqi Wang, Ruopeng Gao, Xu Chen, Tieniu Tan
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.28624v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.28624v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>For AI to plan actions or imagine consequences, it helps to have a "world model" — an internal sense of how things will unfold, like a person predicting that a nudged glass will topple and spill. Today's AI world models usually try to predict the future by generating raw video, pixel by pixel, which buries the actual physics inside a mess of visual detail and makes the reasoning hard to inspect or trust. It's like predicting the weather by painting a picture of tomorrow's sky instead of reasoning about the underlying forces.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>PhiZero introduces a "physical language" — a compact, word-like shorthand for describing how the world changes from one moment to the next. Instead of jumping straight to imagined video, the system first reasons in this shorthand about what will happen ("the ball rolls left, then falls"), and only afterward renders that reasoning into actual video — a "reason-then-render" approach. This mirrors how people think: we abstract what we've seen into concepts and language, reason with those concepts, and then picture the result. The AI learns this physical vocabulary on its own by watching large amounts of everyday video, without needing humans to label it.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Across tests of both <strong>generating</strong> future scenes and <strong>understanding</strong> physical situations, PhiZero produced <strong>physically coherent</strong> predictions — outcomes that respect how the real world behaves.</li>
+<li style="margin-bottom:6px;">It demonstrated <strong>interactive world modeling</strong> and <strong>action-conditioned simulation</strong>, meaning it can predict how a scene changes in response to a specific action, not just play a fixed movie forward.</li>
+<li style="margin-bottom:6px;">It showed <strong>zero-shot motion transfer</strong> — applying a learned motion to a new situation it wasn't specifically trained on.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Separating the "reasoning" from the "rendering" could make AI's predictions about the physical world both more reliable and more transparent — you can inspect the reasoning step rather than trusting a black box of pixels. That's valuable for robotics, simulation, and any system that needs to anticipate real-world consequences before acting. It also points toward a more efficient future: reasoning in a compact shorthand is far cheaper than churning out high-resolution video for every possible outcome, so a robot could quickly weigh several "what if I do this?" options in shorthand before committing to one.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is an early research result, and the paper's claims rest on benchmark demonstrations rather than deployment in messy, real-world settings. Whether the compact "physical language" captures genuinely complex, cluttered scenes — or only relatively clean scenarios — will determine how far the idea can go, and self-taught shorthand can be hard for humans to inspect or correct when it gets something wrong.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Instead of predicting the future frame-by-frame, this AI first reasons in a compact "physics shorthand" and then draws the result — making its predictions more coherent and easier to trust.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2607.28623v1" style="color:#1a1a2e;text-decoration:none;">PAC-MAN: Perception-Aware CBF-RL for Whole-Body Safety in Humanoid Dodgeball</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Lizhi Yang, Junheng Li, Aaron D. Ames
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2607.28623v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2607.28623v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>For humanoid robots to work safely around people, they need to dodge sudden hazards using only their own onboard cameras — not perfect knowledge piped in from outside sensors. Getting a two-legged robot to see an incoming object and move its whole body out of the way, without falling over, is genuinely hard. The playful test case here — a robot playing dodgeball — is a stand-in for a serious question: can a robot react fast and safely to something flying at it using just what its own eyes can see?</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team combined two ideas. First, a mathematical "safety fence" (a control-barrier function) that constantly tracks how close a ball is getting to every part of the robot's body and steers it to keep a safe margin. Second, "reinforcement learning" — training the robot through massive trial-and-error, rewarding it for successful dodges, much like how you'd learn a video game by playing it thousands of times. During training the robot got rich information about clearance to every limb, but the deployed robot has to work with just a blurry depth image from a head camera. They also added a nudge that keeps the dodging movements looking natural rather than flailing. The result runs directly on a real Unitree G1 humanoid.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">The camera-only robot performed <strong>nearly as well as a version given perfect "cheat" information</strong> about the ball's exact location — showing a single onboard camera is good enough for evasion.</li>
+<li style="margin-bottom:6px;">Deployed on a <strong>real humanoid robot</strong> with no additional tuning ("zero-shot"), it successfully dodged <strong>95% of throws</strong>.</li>
+<li style="margin-bottom:6px;">It used visual recognition to <strong>dodge different kinds of balls</strong>, and the researchers pinpointed exactly when the safety math works well versus when it needs help — a useful, honest map of the method's reliability.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Safety that depends only on a robot's own imperfect senses — rather than a perfectly instrumented lab — is exactly what real-world deployment requires. Techniques like this move humanoid robots closer to operating reliably and safely in unpredictable human environments like homes, warehouses, and disaster sites. The team's careful accounting of <em>when</em> the safety math holds up and when it falters is arguably as valuable as the dodging itself: it gives future engineers an honest reliability map instead of a one-off demo, which is what's needed before anyone trusts a 100-pound machine to move fast near people.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>Dodgeball is a controlled, single-hazard scenario; real environments throw many simultaneous, unpredictable challenges — multiple moving people, clutter, uneven floors — that this hasn't faced. And while 95% is impressive, the remaining 5% of failures — plus the fact that safety degraded under certain camera conditions and needed extra hardware (a tracking gimbal) to recover — shows perception is still the weak link before this is trustworthy around actual people.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A real humanoid robot learned to dodge 95% of thrown balls using only its own head camera — a concrete step toward robots that stay safe using just what they can see.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
