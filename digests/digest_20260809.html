@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of August 09, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.06377v1" style="color:#1a1a2e;text-decoration:none;">Learning When to Trust via Selective Context Preference Optimization</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Xian Sun, Wei Chow, Yingshuo Wang, Junhao Liu, Wei Gao
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.06377v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.06377v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI assistants increasingly pull in outside information — a search result, a document, a note someone pasted in — before answering. The trouble is that one wrong or misleading piece of that information can flip a correct answer into a wrong one. Imagine asking a smart assistant a medical question, and a single bad snippet it retrieved convinces it to give dangerous advice. The obvious fix — teach the model to distrust outside information — quietly creates a second, sneakier problem: a model that ignores everything it's told looks "robust" on tests but is useless in real life, because half the time the outside information is genuinely helpful.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The authors reframe the goal. Instead of asking "can the model resist being fooled?" they ask "does the model know <em>when</em> to trust and when to doubt?" — what they call <em>selective trust</em>. To measure this fairly, they built a test set called MIST where every question is presented four ways: with no extra context, with misleading context, with genuinely helpful context, and with irrelevant context. This is like grading a student not just on whether they resist a bad hint, but on whether they can tell a good hint from a bad one. They also created a scoring rule (SC2W) that specifically counts how often a misleading hint turns a right answer into a wrong one. Then they built a training method called SCOPE. Think of it as showing the model matched pairs of "good behavior vs. bad behavior" across all four situations equally — not just drilling it on the misleading cases — so it learns balanced judgment rather than blanket suspicion.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>The weakness is universal.</strong> Across many popular open-source models, misleading context reliably flipped correct answers to wrong ones — no tested model was immune.</li>
+<li style="margin-bottom:6px;"><strong>SCOPE meaningfully reduced this failure</strong> (lower SC2W scores), meaning models got fooled less often by bad context.</li>
+<li style="margin-bottom:6px;"><strong>Crucially, accuracy held steady</strong> when the added context was clean, correct, or irrelevant — so the models became more discerning without becoming stubborn or dumb.</li>
+<li style="margin-bottom:6px;">The four-condition benchmark is itself a contribution: it exposes the "looks robust but is actually useless" trap that simpler tests miss.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Almost every serious AI product today feeds the model outside documents — this is the backbone of search assistants, customer-support bots, and research tools. This work gives the field a fairer way to measure whether those systems are actually trustworthy, and a practical recipe to make them better at telling good sources from bad. Anyone deploying a retrieval-based AI assistant benefits directly.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The gains are measured on a purpose-built benchmark, so real-world messiness (ambiguous sources, mixed good-and-bad context in one document) may be harder than the clean four-way split suggests. The method also relies on being able to mine clear "right vs. wrong" examples, which isn't always easy for open-ended questions. It's a solid, sensible step rather than a solved problem.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A better way to teach and test AI assistants so they trust good information and doubt bad information — instead of blindly doing one or the other.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.06375v1" style="color:#1a1a2e;text-decoration:none;">$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zhe Li, Zhenzhe Zhang, Yangyang Wei, Wenjie Zhang, Xichen Yuan
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.06375v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.06375v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Household robots that are supposed to help around the house need to do something people do without thinking: move and use their hands at the same time. Picture carrying a laundry basket across the room while opening a door, or walking to the sink while holding a mug steady. Today's humanoid robots usually split these skills apart — they either walk <em>or</em> manipulate objects — which makes them clumsy and slow at real chores. Getting a robot to walk, balance, adjust its posture, and handle objects as one smooth motion is still largely unsolved.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team built a system called ω-0 (omega-zero) that controls a humanoid robot's <em>whole body</em> at once from a single spoken instruction plus what the robot sees and feels. The clever part is how it "thinks ahead." Rather than trying to imagine a full future video of what will happen — which is expensive and detailed to the point of being wasteful — ω-0 learns a compact mental sketch of what it expects to see next, and uses that lightweight foresight to guide its movements. It pairs this with a technique called diffusion (the same family of methods behind AI image generators), here used to generate fluid full-body actions rather than pictures. To teach it, they collected ω-HOME, a 40+ hour library of real people and robots doing household tasks, recorded from multiple camera angles with detailed body-motion tracking — essentially a rich how-to demonstration set the robot learns from.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">A <strong>single</strong> ω-0 model handled <strong>11 different household tasks</strong> with smooth "manipulate-while-moving" behavior — no separate walking and grabbing modes.</li>
+<li style="margin-bottom:6px;">It <strong>consistently beat</strong> the leading alternative approaches, including imitation-learning methods, vision-language-action models, and other whole-body and world-action models.</li>
+<li style="margin-bottom:6px;">The lightweight "sketch the future" trick worked better than the heavier "predict full video" approach, suggesting you don't need to imagine everything to act well.</li>
+<li style="margin-bottom:6px;">The 40+ hour ω-HOME dataset is a valuable resource other researchers can build on.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Coordinated move-and-manipulate ability is the missing piece between robots that look impressive in demos and robots that could actually be useful in homes, warehouses, and care settings. Most of the value of a home robot comes precisely from the everyday chores — tidying, fetching, loading — that require moving and handling things together, so a model that treats them as one fluid behavior removes a fundamental bottleneck. By showing a single model can learn many coordinated whole-body chores from real data, this points toward general-purpose home helpers rather than one-trick machines, and gives other labs a shared dataset to accelerate the same goal.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This was tested on a specific robot doing a curated set of 11 tasks — real homes are messier, with clutter, pets, and endless variety the robot hasn't seen. Humanoid hardware is also expensive and fragile, and "smooth in experiments" is not the same as "safe and reliable next to a toddler." Collecting 40+ hours of data per new environment is a lot; scaling this cheaply is the open challenge.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A humanoid robot that can walk and use its hands at the same time from one model — a real step toward robots that can actually do chores.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.06374v1" style="color:#1a1a2e;text-decoration:none;">DyPES-VLA: Learning Shared Dynamics Priors and Embodiment-Specific Control for Cross-Embodiment Manipulation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Junfeng Li, Junjie He, Zhide Zhong, Yangyang Zheng, Pingyue Sheng
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.06374v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.06374v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>There are many different kinds of robots — different arms, grippers, numbers of joints, and ways of moving. Today, teaching each new robot to do a task usually means starting almost from scratch, because skills learned on one robot body don't transfer cleanly to another. It's as if a chef who mastered a professional kitchen had to completely relearn cooking every time the stove or knives changed. This makes robot training slow and expensive, and there's a lot of tedious manual work just to line up the different robots' controls into a common format.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built DyPES-VLA, a system designed to be a single "generalist" brain that can drive many different robot bodies. Their insight is to separate two things. First, there are <em>shared physics</em> — how objects move, when contact happens, how pushing something changes a scene. These rules are the same no matter which robot is acting, so the system learns them once by training on a "predict what happens next" task across data from many robots (a bit like learning the universal laws of a game before learning any specific player's controls). Second, there's <em>body-specific control</em> — the exact joints and limits of each particular robot. For this, they use a "mixture of experts" design: think of a shared coordinator that understands the general plan, plus a panel of specialists, each fluent in one robot's particular anatomy, who translate the plan into that robot's own movements. Importantly, this avoids the usual painstaking manual step of converting every robot's actions into one common format.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>State-of-the-art performance</strong> across both simulated and real-world tests.</li>
+<li style="margin-bottom:6px;"><strong>98.0%</strong> success on the LIBERO benchmark — near-perfect on a standard manipulation test suite.</li>
+<li style="margin-bottom:6px;"><strong>59.25%</strong> on RoboCasa-GR1 and <strong>89.02%</strong> on RoboTwin 2.0, two harder, more varied benchmarks.</li>
+<li style="margin-bottom:6px;">Achieved all this as *one* policy across different robot bodies, and without the manual action-alignment preprocessing that competing methods require — a real practical saving.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>If one trained model can control many robot types, the whole industry moves faster: a warehouse or lab could adopt new robot hardware without retraining from zero, and improvements made once would benefit every robot. It also chips away at one of robotics' quiet cost sinks — the manual engineering needed just to make different machines "speak the same language" before training can even begin. This "learn the physics once, adapt to each body" recipe is a promising template for the general-purpose robot software many companies are chasing, and a step toward a world where buying a new robot is more like installing new software than starting a new project.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The strongest number (98% on LIBERO) is on a relatively controlled benchmark; the harder, messier RoboCasa score of ~59% is a more honest picture of how far real-world reliability still has to go. It was also tested on a fixed set of robot types — whether a brand-new, very different robot body slots in smoothly is unproven. Benchmarks are not the same as unpredictable real environments.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>One robot "brain" that adapts to many different robot bodies by learning shared physics once — cutting the cost of putting new robots to work.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.06366v1" style="color:#1a1a2e;text-decoration:none;">Tracing the Heart: An Evidence-Linked Pipeline for Heart-Failure Feature Engineering</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Soorya Ram Shimgekar, Michelle Hu, Dorisa Shehi, Daniel Kang, Roy Ka-Wei Lee
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.06366v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.06366v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Before doctors and researchers can use medical data to predict who's at risk or study a disease, someone has to turn messy patient records into clean, meaningful measurements — a tedious step called "feature engineering" that eats up roughly 40% of data scientists' time. For heart failure, which affects an estimated 6.7 million American adults, this is especially painful: the relevant information is scattered across many parts of the record, and interpreting it correctly requires knowing the medical guidelines. Doing this by hand is slow; doing it with today's automation tools tends to be unreliable and hard to double-check.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team built nMAS (the Nimblemind Multi-Agent System), which works like a small, well-organized team of AI specialists rather than a single do-everything program. One "agent" pulls the raw facts from the records, another combines them into higher-level clinical measurements, and — crucially — every result is tied back to the specific evidence and the medical rubric (a guideline-based scoring checklist) that justifies it. Think of it as an automated research assistant that not only produces the numbers but also shows its work and cites its sources, so a clinician can trace exactly where each figure came from. A separate, deliberately limited AI acts as an auditor, checking the output for integrity and compliance rather than trusting it blindly.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Generated <strong>132 structured features</strong> and <strong>70 rubric-scored aggregated features</strong> from nine different record sources, each checked for structural soundness and traceable to its evidence.</li>
+<li style="margin-bottom:6px;">Adding these features <strong>improved prediction accuracy</strong> (measured by AUROC, where 1.0 is perfect and 0.5 is a coin flip): from <strong>0.895 to 0.963</strong> for one type of heart failure (HFrEF) and <strong>0.870 to 0.910</strong> for another (HFpEF).</li>
+<li style="margin-bottom:6px;">An independent AI review scored the generated features at <strong>81.5%</strong> of the maximum for evidence support and methodological soundness — reasonably strong, and notable because the reasoning is auditable rather than a black box.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>If the most time-consuming, error-prone step of clinical data work can be automated <em>and</em> made auditable, medical research speeds up and becomes more trustworthy at the same time. Faster, cheaper feature engineering means smaller research teams and hospitals — not just big, well-funded institutions — could run studies that today are out of reach. The emphasis on traceable evidence is the key differentiator: in medicine, an answer you can't verify is often an answer you can't use, so building the "show your work" step in from the start is what could make regulators and clinicians comfortable. This approach could generalize to other complex diseases beyond the heart.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The system was tested on <strong>500 dummy (synthetic) patient records</strong> from a single institution — not real patients across multiple hospitals — so its real-world reliability and generalizability are still unproven. The authors are appropriately upfront that external validation is needed before anyone should trust it in a clinical setting. Auditing by another AI is helpful but not a substitute for expert human review.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An AI "team" that automates the tedious prep of heart-failure medical data while showing its evidence — promising, but still needs testing on real patients.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.06364v1" style="color:#1a1a2e;text-decoration:none;">Investigating Artificial Intelligence Digital Sovereignty in Mobile Shopping Apps: A Case Study of Nigeria</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> George Grispos, Sajda Qureshi
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.06364v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.06364v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Shopping on your phone is booming in Nigeria, and these apps increasingly use AI behind the scenes — for recommendations, pricing, fraud checks, and more. But most people have no idea what the AI is doing with their data or their choices, which raises a bigger question of "digital sovereignty": how much real control and awareness do ordinary users have over the technology shaping their daily transactions? When AI operates invisibly, users can be steered, profiled, or exposed to fraud without ever knowing it's happening.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>This is an investigative study rather than a new AI system. The researchers acted a bit like digital detectives: they took popular Nigerian Android shopping apps apart to examine what AI features were actually built into them (a technique borrowed from digital forensics — inspecting the software itself), and they cross-referenced this with the apps' public documents and disclosures to see whether companies told users what they were doing. They used "transparency" — whether an app openly discloses its AI use — as their yardstick for how much awareness and control users really have. They then set this against Nigeria's broader social and economic backdrop: how dependent people are on these platforms, how much they understand AI, and how unevenly they interact with it.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>AI is widely used</strong> across the Nigerian shopping apps examined — it's already baked into the everyday experience.</li>
+<li style="margin-bottom:6px;"><strong>Transparency is poor</strong>: the apps disclosed very little about how or why they use AI, leaving users largely in the dark.</li>
+<li style="margin-bottom:6px;">The socio-economic picture showed <strong>growing dependence</strong> on these platforms, only <strong>moderate public awareness</strong> of AI, and <strong>uneven patterns</strong> of how people engage with the technology.</li>
+<li style="margin-bottom:6px;">The study provides concrete, evidence-based documentation of a gap between what apps do and what they tell users — in a region often overlooked in this kind of research.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Most scrutiny of AI transparency focuses on wealthy Western markets; this study shines a light on a fast-growing African market where the stakes — fraud, loss of control, dependence — are high and the protections are thin. As hundreds of millions of first-time internet users across Africa come online primarily through mobile apps, the norms these platforms set now will shape a generation's relationship with AI. It gives regulators, app makers, and consumer advocates hard evidence to push for clearer disclosure and stronger user protections where they're most needed.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a focused case study of <em>selected</em> apps in <em>one</em> country using an interpretive approach, so the findings are illustrative rather than statistically representative of all apps or all users. Inspecting an app from the outside can reveal that AI features exist but not always exactly how they work internally. It documents the problem well but doesn't, on its own, deliver a fix.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Nigerian shopping apps quietly rely on AI while telling users almost nothing about it — a transparency gap that leaves consumers with little real control.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
