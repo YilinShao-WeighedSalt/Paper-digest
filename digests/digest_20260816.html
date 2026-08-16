@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of August 16, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.13560v1" style="color:#1a1a2e;text-decoration:none;">AutoDesign: Meta-Harness Optimization for Long-Horizon Agentic Design</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yaxin Luo, Haobin Jiang, Jialv Zou, Xu Huang, Wenhao Yan
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.13560v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.13560v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Turning a dense research paper into a clean conference poster is slow, fiddly work that a human designer or scientist can spend hours on. More broadly, when we ask an AI to do a long, multi-step creative job — read a document, plan a layout, write, edit, revise — today's AI tools follow a fixed recipe and never get better at the recipe itself. Imagine hiring an assistant who does the same clumsy routine every single time and never learns a smarter way of working; that's the state of most "AI agents" today.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team built a system called AutoDesign that improves not just its answers, but the <em>way</em> it works. Think of a chef who doesn't just cook a dish, but keeps rewriting their own kitchen playbook — "next time, prep the sauce first, plate this way" — after tasting each result. Here, one AI (the "meta-harness optimizer") watches an AI coding assistant do the poster-making job, notices what went wrong, and rewrites the assistant's own operating instructions and helper code (the "harness"). Over many rounds, the assistant accumulates reusable know-how, so its later work is better than its first attempts. To test this, they created a benchmark called PosterBench — 100 real papers across five fields — and scored the posters both automatically and with human judges.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">On the main 100-paper test, AutoDesign scored <strong>78.32</strong>, beating the commercial system "Claude Design" by <strong>7.45 points</strong>.</li>
+<li style="margin-bottom:6px;">Bolting the learned playbook ("DesignHarness") onto seven different AI setups raised the average score from <strong>54.99 to 67.39 (+12.4%)</strong> — the improvement wasn't a fluke tied to one model.</li>
+<li style="margin-bottom:6px;">Running fully on its own, it made a conference-quality poster in about <strong>40 minutes</strong> using <strong>253 tool calls and 11 editing rounds, for under $3</strong>.</li>
+<li style="margin-bottom:6px;">In a blind human study where judges didn't know which system made which poster, AutoDesign's work was preferred most often.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is a concrete step toward AI that gets better at its job through practice rather than needing engineers to hand-tune it. If an AI can rewrite its own working methods for poster design, the same idea could apply to slide decks, reports, marketing materials, or any long multi-step task — meaning cheaper, steadily-improving automation for knowledge work.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The results are on one narrow task (paper-to-poster) with scoring that partly relies on other AI models as judges, which can be biased or gameable. "Conference-poster quality" is a modest bar, and it's untested whether the self-improvement holds up on messier, higher-stakes jobs. Real adoption would need proof it generalizes and doesn't quietly drift into bad habits over many self-edits.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An AI that rewrites its own playbook made better conference posters than a commercial tool for under $3 — a small but real example of software that improves with practice.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.13558v1" style="color:#1a1a2e;text-decoration:none;">OmniScientist: An Omni-Modal Omni-Discipline AI Scientist</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Bobo Li, Hao Fei, Tianjie Ju, Mong-Li Lee, Wynne Hsu
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.13558v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.13558v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>"AI scientist" systems can now draft a whole research paper — form a hypothesis, run code, write it up — but they mostly work from text, tables, and pre-chewed summaries. The catch: a lot of real scientific evidence lives in images, audio, video, 3-D scans, and sensor traces, and if the AI never actually <em>looks</em> at that raw evidence, it's like a doctor diagnosing a patient from a one-line note instead of examining the X-ray. Decisions get made on a thin slice of the truth.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built OmniScientist, an AI research assistant that works directly from raw, messy data of almost any type — pictures, signals, audio, video, 3-D structures, movement trajectories, tables, and formulas — rather than from someone else's summary. Picture a research team with three specialists working in sequence on an assembly line: one to come up with ideas, one to run experiments, and one to write the paper, all fed by a "perception layer" that first genuinely examines the raw material. Crucially, it double-checks its own work by running code that verifies the idea is actually new, that the statistics hold up, that the experiments really ran, and that every number in the final paper can be traced back to real data — an attempt to stop the AI from confidently making things up.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Tested on <strong>36 real-data cases</strong> across <strong>5 broad fields</strong> and many evidence types, it produced a finished, compiled manuscript in <strong>all 36 cases</strong>.</li>
+<li style="margin-bottom:6px;">Average paper-quality score of <strong>6.3</strong> (on the reviewers' scale) using its main reasoning engine.</li>
+<li style="margin-bottom:6px;">The key experiment: when the same system was allowed to *see* the raw data versus only getting pre-computed numeric summaries, seeing the raw data improved <strong>all 7 quality measures</strong> and won <strong>85% of head-to-head comparisons</strong>.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>It's strong evidence that letting AI perceive raw evidence — not just read summaries — meaningfully improves the quality of automated research. As these systems mature, they could accelerate discovery in data-heavy fields like biology, materials, and medicine, and help smaller labs punch above their weight.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>A score of 6.3 and self-generated novelty checks are not the same as peer-reviewed, reproducible science; an AI grading its own homework can miss subtle errors or dress up weak findings. Thirty-six curated cases is a small, controlled sample, and the hardest part of science — being <em>right</em> and genuinely original — isn't proven here. Real trust will require independent replication and expert scrutiny of the actual claims it produces.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An AI scientist that actually looks at raw data (images, video, signals) writes noticeably better research than one fed only summaries — a useful reminder that perception, not just reasoning, drives discovery.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.13556v1" style="color:#1a1a2e;text-decoration:none;">V-RAE: Rethinking Video Latent Spaces for Generation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Minghui Guo, Shengqiong Wu, Hao Fei
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.13556v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.13556v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI video generators don't work with raw video directly — it's far too heavy. Instead they first compress video into a compact numeric "sketch," generate within that compressed space, then expand it back to full frames. The trouble is that today's compressors are tuned to make the <em>rebuilt</em> video look sharp, not to make the compressed sketch easy to <em>create from scratch</em>. It's like optimizing a photocopier for crisp copies while ignoring whether an artist could actually paint from the shrunken thumbnail — good for copying, awkward for creating.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team built V-RAE, a smarter video compressor designed specifically to make generation easier. Their key move: instead of learning to compress from zero, they build on top of powerful, already-trained image-understanding models (kept "frozen," i.e., reused unchanged) that already know what objects and scenes mean. A lightweight module then strips out the redundancy between video frames — since one frame looks a lot like the next — while keeping the meaningful content, and a decoder reconstructs smooth motion from the trimmed-down version. The result is a compact sketch that carries real meaning, so a generator can learn to draw in it faster and better. They also introduced a new diagnostic (tFVD) that better predicts whether a compressed space will actually be good for generation, since sharp reconstruction alone turned out to be a misleading signal.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Achieved <strong>2.13 rFVD</strong> on the K600 benchmark (lower is better), beating all the large pretrained video compressors they tested.</li>
+<li style="margin-bottom:6px;">Generators trained in its space converged <strong>up to 6x faster</strong> and hit strong quality scores (<strong>gFVD of 117.86 on UCF101 and 19.16 on K600</strong>).</li>
+<li style="margin-bottom:6px;">Its compressed sketches held on to <strong>much more meaning</strong> than conventional ones — useful beyond just generation.</li>
+<li style="margin-bottom:6px;">Bonus: it also improved <strong>predicting future video frames</strong> on a driving-scene benchmark, beating a recent competing system.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Faster training and a more meaningful compressed space translate directly into cheaper, higher-quality AI video tools — relevant to film, advertising, simulation, and any product racing to generate realistic clips. The finding that "good at rebuilding" ≠ "good for creating" also corrects a wrong assumption baked into how the field builds these systems.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a research-grade result on academic benchmarks (short clips, standard datasets), not a proven production system generating long, controllable, high-resolution video. Relying on frozen pretrained models means it inherits their blind spots, and "6x faster to train" doesn't guarantee the final videos beat the best commercial generators. Real-world use would need testing at longer durations and higher resolutions.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A cleverer way to compress video — built on existing image models — makes AI video generators train up to 6x faster and produce better results.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.13507v1" style="color:#1a1a2e;text-decoration:none;">Safety-Critical Control for Quadrotor UAVs via Decentralized Navigation Functions</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Omayra Yago Nieto, Alexandre Anahory Simoes, Leonardo Colombo
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.13507v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.13507v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>When multiple drones fly together — for light shows, deliveries, search-and-rescue, or inspections — the nightmare scenario is a mid-air collision. That gets harder when each drone must decide for itself (no central controller barking orders) and when the math doesn't perfectly match reality because of wind, weight, or an imperfect model of how the drone behaves. The real-world stakes: falling drones can hurt people, destroy expensive hardware, and ground an entire operation.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers designed a control method that lets each drone steer itself safely through a shared space while guaranteeing it won't crash into its neighbors — with high probability — even when its own model of the world is a bit wrong. The core challenge they tackle is a physical quirk: the "guidance math" assumes a drone can push in any direction freely, but a real quadrotor can only push <em>along the direction it's tilted</em> (it makes thrust straight down through its body and tilts to move). Think of the difference between a hovercraft that can slide any direction versus a helicopter that must lean the way it wants to go. They translate the idealized "push any direction" commands into realistic "tilt-and-thrust" commands, measure how much error that translation introduces, and then add a safety filter that makes the smallest possible adjustment to each drone's thrust to keep collisions from happening. The "high probability" language matters — they explicitly account for the uncertainty from the learned, imperfect model.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Provides a <strong>mathematically-backed guarantee of pairwise collision avoidance with high probability</strong>, not just "it worked in our test."</li>
+<li style="margin-bottom:6px;">Bridges the gap between idealized guidance forces and what a real quadrotor can physically do, and <strong>quantifies the error</strong> introduced in that translation.</li>
+<li style="margin-bottom:6px;">The safety filter is <strong>"minimally invasive"</strong> — it nudges the drone's commanded thrust only as much as needed, so normal flight isn't disrupted more than necessary.</li>
+<li style="margin-bottom:6px;">Works in a <strong>decentralized</strong> way, meaning it can scale to teams without a single point of failure.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Provable safety — not just "it didn't crash in the demo" — is exactly what regulators and operators need before drone swarms fly over people or in crowded airspace. This kind of guarantee under realistic, imperfect conditions is a building block for trustworthy autonomous fleets in delivery, agriculture, and emergency response.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The abstract is heavy on theory and light on evidence of real hardware flights, so it's unclear how the guarantees hold up against gusty wind, sensor noise, and communication dropouts outside simulation. "High probability" is not "certainty," and the math assumes drones can sense each other's positions reliably — a strong assumption in the messy real world. Field testing at scale would be the real proof.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A control method that mathematically guarantees drones in a self-organizing swarm won't collide — even when their own models of physics are imperfect.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #27ae60;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#27ae60;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">EMBEDDED SYSTEMS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.13496v1" style="color:#1a1a2e;text-decoration:none;">YAVIN: A Unified Architecture for Secure Edge Processing in Memory</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Shouzhi Fang, William C. Tegge, Md Omar Faruque, Peipei Zhou, Endadul Hoque
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.13496v1" style="color:#27ae60;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.13496v1" style="color:#27ae60;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Devices at the "edge" — phones, cars, factory sensors, smart cameras — increasingly run several apps and even AI models side by side, often handling sensitive data. Today's security hardware protects data only <em>inside the processor</em>; the moment data travels to memory, it's exposed on an untrusted path, like a bank guarding the teller's window but leaving the cash unescorted as it's wheeled to the vault. Meanwhile, engineers want to do computation <em>inside memory itself</em> (it's faster and more efficient), but there's currently no way to do that securely.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team built YAVIN, an architecture that stretches the processor's "secure bubble" to cover a protected region of memory too, so data can be safely worked on in either place without ever being exposed on the vulnerable bus in between. The clever part: they figured out how to run computation directly inside memory ("processing-in-memory") while keeping it encrypted and verified. To do that, they created the first in-memory versions of two modern security algorithms — one a "post-quantum" key-exchange scheme (built to resist future quantum computers) and one an authenticated-encryption scheme that both scrambles data and proves it wasn't tampered with. They then reorganized how AI computations are ordered so that encryption's strict rules are satisfied while minimizing how long any raw, unencrypted data is ever sitting exposed.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Compared to the latest secure in-memory approach (using AES), YAVIN delivers <strong>more than a 20x speedup</strong>.</li>
+<li style="margin-bottom:6px;">Running quantized (compressed) edge-class AI language models, it adds only <strong>34% overhead for INT8</strong> and <strong>9.3% for INT32</strong> versus running with no protection at all — a modest price for real security.</li>
+<li style="margin-bottom:6px;">Delivers the <strong>first in-memory implementations</strong> of a post-quantum key-exchange scheme (LightSaber) and an authenticated cipher (ASCON-128), both tuned to run efficiently inside DRAM.</li>
+<li style="margin-bottom:6px;">Limits how long unencrypted data is ever exposed, tightening security beyond just "it's encrypted."</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>As AI moves onto local devices for privacy and speed, protecting that data end-to-end — including while it's being crunched in memory — becomes essential for medical, automotive, and industrial systems. Building in resistance to future quantum computers now means these devices won't be obsolete-on-arrival from a security standpoint.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a hardware architecture paper; the gains are demonstrated on specific workloads and likely in simulation or prototypes, not shipping silicon. Real chips take years and huge investment to fab, and a 9–34% overhead, while impressive, still isn't free for battery-powered devices. Independent security review would be needed before anyone trusts these novel in-memory crypto implementations with real secrets.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A new chip design lets sensitive AI run securely <em>inside memory</em> — with future-proof, quantum-resistant encryption — at a fraction of the usual speed penalty.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
