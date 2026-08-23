@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of August 23, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.20337v1" style="color:#1a1a2e;text-decoration:none;">Information on trajectories: martingales and random times</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Akshay Balsubramani
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.20337v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.20337v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>When researchers run experiments — testing a new drug, a new ad, a new machine-learning model — they need to know when they've seen enough data to trust the result, and they need guarantees that they aren't fooling themselves by "peeking" at results early and stopping the moment the numbers look good. For decades, statisticians have relied on a toolbox of famous mathematical "safety guarantees" (with names like Hoeffding, Ville, and PAC-Bayes) that put honest bounds on how wrong a conclusion could be. The catch: nobody had a single, unified explanation of why these different tools work, how they relate to each other, or — crucially — how much accuracy each one quietly throws away.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Think of tracking an experiment over time as watching a running tally that, under a "nothing interesting is happening" assumption, shouldn't drift upward — a mathematical object called a martingale (essentially a fair-game score that on average stays put). This paper builds one master accounting ledger for that running tally. Every classic safety bound turns out to be a special case of this ledger, and the ledger makes the "slack" — the accuracy each bound gives up in exchange for simplicity — appear as an explicit, measurable quantity rather than a mystery. The author frames the amount of information lost using entropy (a precise measure of uncertainty or surprise), and shows the loss breaks down neatly, step by step. A particularly elegant piece: if you allow yourself to stop the experiment at an arbitrary moment of your choosing, the math automatically charges you a "peeking penalty" — a concrete price for the freedom to look whenever you want.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Unifies the whole toolbox</strong>: recovers Ville, Azuma-Hoeffding, PAC-Bayes, and L^p maximal bounds as special cases of one identity, instead of five separate proofs.</li>
+<li style="margin-bottom:6px;"><strong>Makes the waste visible</strong>: the accuracy each bound discards ("slack") is given an exact formula in three distinct settings, rather than being an unquantified approximation.</li>
+<li style="margin-bottom:6px;"><strong>Prices peeking exactly</strong>: stopping at a self-chosen time carries a precisely defined "peeking penalty," putting a hard number on a risk practitioners have long handled by rule of thumb.</li>
+<li style="margin-bottom:6px;"><strong>A bonus for combining tests</strong>: blending multiple safe tests together yields a measurable "pooling benefit," suggesting running several models at once can be strictly better.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is foundational plumbing for the fast-growing field of "anytime-valid" statistics — methods that let companies and scientists monitor experiments continuously and stop early without cheating. By showing exactly how much each classic tool wastes, it points the way to tighter, more efficient tests, which means valid conclusions from less data. Anyone running large-scale A/B tests (tech firms), sequential clinical trials, or continuous model monitoring stands to benefit.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is pure theory: elegant identities and proofs, not a software tool or an experiment you can run tomorrow. Turning these exact-slack formulas into a practical library that beats existing methods on real data is a separate, non-trivial engineering effort that the paper does not attempt. It also assumes a fairly sophisticated reader; the ideas will take time to filter into everyday statistical practice.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A single unifying theory that explains every classic statistical safety bound and, for the first time, puts an exact price tag on the accuracy each one throws away.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.20335v1" style="color:#1a1a2e;text-decoration:none;">4DAnyone: Create Anyone in 4D from a Casual Monocular Video</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yudong Jin, Tao Xie, Qihang Zhang, Zehong Shen, Zhen Xu
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.20335v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.20335v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Turning an ordinary phone video of a person into a fully 3D model you can spin around and watch move — a "4D" reconstruction (3D plus time) — is extremely hard, because a normal video only ever shows one angle at a time. Imagine wanting to place a friend, filmed on a single handheld clip, into a video game or a virtual meeting where you can walk around them: today that requires expensive multi-camera studios. This work aims to do it from one casual, uncalibrated video.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Modern AI can "imagine" what a person looks like from angles the camera never captured — like a talented artist who can sketch someone's back after seeing only their front. The problem is that to build a proper 3D model you need dozens of these imagined viewpoints, and the AI processes them in small batches; each batch forgets what the others drew, so the person's shirt or face subtly changes between angles and the model comes out warped. The team diagnosed this as an "attention memory" limit and fixed it two ways. First, Reference Context Packing compresses everything the AI has already drawn into a compact, fixed-size summary — like keeping one tidy reference sheet instead of an ever-growing stack of photos — so guidance stays strong no matter how many views are added. Second, Target Context Routing shuffles which viewpoints are drawn together at different stages, so early on the batches share the big-picture structure and later they refine fine details. They also built a custom training dataset of human characters using their own game engine.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Solves the consistency breakdown</strong>: keeps a person looking like the same person across the tens of viewpoints needed for real 3D reconstruction, where prior camera-controlled video AIs drifted and warped.</li>
+<li style="margin-bottom:6px;"><strong>Beats prior methods</strong> on two standard human-reconstruction benchmarks (DNA-Rendering and DyMVHumans) in both the quality of the imagined novel-view video and the final 3D result.</li>
+<li style="margin-bottom:6px;"><strong>Fixed memory cost</strong>: the reference-summary trick keeps computational cost flat as views grow, instead of ballooning as you add more angles.</li>
+<li style="margin-bottom:6px;"><strong>Works in the wild</strong>: generalizes to casual real-world videos, not just clean lab footage; code and results are publicly posted.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Casual-video-to-3D-avatar could democratize content that currently needs a professional capture studio — think personalized avatars, film and game production, virtual try-on, and telepresence. Making it work from a single phone clip lowers the cost and skill barrier dramatically, which is how these technologies move from studios into everyday apps.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The system is offline (it processes a whole clip after the fact, not live), and it leans on AI "imagining" unseen angles, which means occasional invented details rather than ground truth. It was trained heavily on synthetic game-engine humans, so unusual clothing, lighting, or motion may still trip it up, and reconstructing full scenes with objects and multiple people remains out of scope.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Turns a single casual phone video of a person into a spinnable, moving 3D model by cleverly fixing the "memory" limits that made earlier AI reconstructions warp.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.20336v1" style="color:#1a1a2e;text-decoration:none;">WithEveryone: Unified Planning and Identity Grounding for Group Image Generation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Hengyuan Xu, Qixun Wang, Yiji Cheng, Miles Yang, Zhao Zhong
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.20336v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.20336v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI image generators are good at putting one specific person into a new scene while keeping their face recognizable, but they fall apart when you ask for a group — say, a photo of five specific coworkers at a party. Faces get swapped, blended, or duplicated, and the result looks like a bad collage. Anyone who has tried to generate a family portrait or a team photo from reference photos has hit this wall.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The core trouble is that when the AI juggles many faces at once, it loses track of who goes where and sometimes just crudely copy-pastes a reference photo into the scene. WithEveryone tackles this like a good event planner. First, it gives each requested person a unique "name tag" so the AI never confuses them. Then, before drawing anything, it makes a seating chart — a plan of who stands where and how the picture is laid out — and uses that plan as a blueprint for the final image. Its key training trick, the Layout-Grounded ID Loss, teaches the model using labeled face regions on the plan, telling it directly "this spot should be this person," instead of the unreliable older approach of trying to match up fuzzy, half-finished faces during generation. That direct supervision is what lets it scale cleanly to as many as ten people.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Higher face fidelity</strong>: improved face-similarity score from 0.462 (for GPT-Image-2) to 0.499 — the generated faces more reliably match the intended people.</li>
+<li style="margin-bottom:6px;"><strong>Far fewer copy-paste artifacts</strong>: cut crude reference-pasting from 0.169 down to 0.055, meaning the people look naturally rendered into the scene rather than stamped on.</li>
+<li style="margin-bottom:6px;"><strong>Covers the whole group</strong>: successfully includes 97.3% of the requested identities, with only a 2.8% rate of accidentally duplicating someone.</li>
+<li style="margin-bottom:6px;"><strong>Scales to ten people</strong> in a single image, a regime where prior identity-preserving methods degrade badly.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Reliable multi-person generation unlocks a lot of practical uses — group marketing imagery, personalized greeting cards, storyboards and films with a recurring cast, social content — without a photoshoot. The "plan first, then render" approach is also a broadly useful idea: giving generative AI an explicit blueprint before it starts drawing tends to make the output more controllable.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>Ten people is the tested ceiling; crowds are still out of reach, and the results, while improved, are far from perfect (a face-similarity of 0.499 still means noticeable mismatches). It depends on good reference photos and clean annotated face regions in training, and the paper does not address harder real-world messiness like tricky poses, heavy occlusion, or matching a group's clothing and lighting. As with all realistic-people generators, it raises obvious misuse and consent concerns.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An AI that can finally put up to ten specific people into one image without swapping their faces, by drawing a "seating chart" before it renders.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.20308v1" style="color:#1a1a2e;text-decoration:none;">DreamHand: Repurposing Video Diffusion Models for Occlusion-Robust Egocentric 3D Hand Motion Recovery</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yufei Liu, Xixi Wang, Hao Li, Ganlong Zhao, Kaitong Cai
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.20308v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.20308v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Robots learn manipulation skills faster if they can watch humans do tasks, and the richest source is "egocentric" video — first-person footage from head-mounted cameras, like a GoPro on your forehead while you cook. But tracking exactly where the hands are in 3D from this footage is brutally hard: hands constantly disappear behind objects, or simply leave the frame. When the hand vanishes, existing trackers lose the thread, which corrupts the very data robots need.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The clever move here is repurposing a tool built for a completely different job. Video "diffusion models" are AIs normally used to generate video by gradually removing noise from static; they're famous for producing imaginative but random results through many slow, chance-driven steps. DreamHand instead uses one of these models as a reader rather than a painter. In a single, deterministic pass — no randomness, no slow multi-step guessing — it taps into the model's rich internal understanding of the scene, which turns out to already "know" about parts of the scene the camera can't currently see, including a hand hidden behind a cup or momentarily off-screen. From that one read it reconstructs smooth, real-world-scale trajectories for both hands, without needing a separate hand-detector and, in one setup, without even knowing the camera's specifications.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Big accuracy gains where it's hardest</strong>: cut a standard hand-position error (MPJPE-p) by 30% on the occlusion-heavy ARCTIC benchmark and 40% on HOT3D versus the previous best.</li>
+<li style="margin-bottom:6px;"><strong>Excels exactly when hands vanish</strong>: once out-of-sight hands are counted in the scoring, improvements jump to 46%-61% — the situation that breaks other methods.</li>
+<li style="margin-bottom:6px;"><strong>No extra scaffolding needed</strong>: recovers both hands with real-world metric placement without an external hand detector, and a second mode needs no camera specifications at test time.</li>
+<li style="margin-bottom:6px;"><strong>Fast and stable</strong>: replaces the slow, randomized multi-step sampling of typical diffusion models with a single deterministic forward pass.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Cheap, everyday first-person video is one of the most abundant potential sources of robot training data, and the missing piece has been reliably extracting what the hands actually did — especially through the occlusions that fill real manipulation. Making that robust turns ordinary human activity footage into usable robot-teaching material, a scalable path toward robots that learn household and workshop tasks.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>It's an offline method that processes whole clips after the fact, so it isn't yet a live, on-robot perception system. It inherits the heavy computational appetite of large video models, and its ability to "see" hidden hands rests on the model's learned priors — informed guesses that can be wrong in unusual scenes. Crucially, recovering hand trajectories is only step one; translating them into actual robot skills is a further, unaddressed challenge.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Repurposes a video-generating AI into a fast, one-shot "reader" that tracks hands accurately even when they're hidden or off-screen, unlocking everyday first-person video as robot training data.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.20271v1" style="color:#1a1a2e;text-decoration:none;">Catching the Rug: Early Prediction of Fraudulent Memecoins on Solana via Machine Learning</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Jianghai Li, Pavel Kuznetsov, Yury Yanovich, Konstantin Nott-Whaley, Igor Vodolazov
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.20271v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.20271v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>"Memecoins" are novelty cryptocurrencies that anyone can launch in minutes, and many are outright scams: creators hype a coin, lure buyers, then yank out the money and vanish — a "rug pull" — leaving everyone else holding worthless tokens. This happens at massive scale on Solana, a blockchain built for cheap, high-volume trading. The damage is real money lost by ordinary investors, often within minutes of a coin's launch.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a fraud early-warning system by studying scams at scale. They assembled a huge dataset — 6.4 million tokens over seven months — and trained a machine-learning model to spot the warning signs of a rug pull. The model they leaned on, called Gradient Boosting (XGBoost), works like a committee of simple rules that each correct the mistakes of the ones before, together forming a sharp predictor; it's a workhorse for exactly this kind of pattern-spotting. Notably, on Solana the scams don't hide in the coin's software code (as they often do on Ethereum) but in behavior — how liquidity is manipulated and how trading and social activity unfold. So the model watches only the coin's first few minutes of trading activity and flags the ones behaving like scams, without ever needing to inspect any code.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;"><strong>Scams show their hand fast</strong>: the vast majority of these memecoins display rug-pull characteristics within one hour of launch — making early detection both possible and urgent.</li>
+<li style="margin-bottom:6px;"><strong>Just 5 minutes of data is enough</strong>: using only the first five minutes of trading, XGBoost reliably flags likely rug pulls, even with no code-level information.</li>
+<li style="margin-bottom:6px;"><strong>Combining data sources fights blind spots</strong>: merging data from two major launch platforms (PumpFun and Raydium) notably improved reliability, offsetting the way a model trained on one platform stumbles on another.</li>
+<li style="margin-bottom:6px;"><strong>Scale</strong>: one of the first large-scale rug-pull studies focused on Solana rather than Ethereum, on a dataset of millions of tokens.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>A five-minute early-warning flag could power wallet alerts, exchange filters, or trading-app safeguards that warn ordinary people before they buy into a scam. As fraud migrates to fast, cheap blockchains like Solana, behavior-based detection that ignores code is exactly the right tool, and this offers a practical blueprint for investor-protection systems.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>Scammers adapt: once they know the warning signs, they can change tactics to slip past a fixed model, so any such system needs constant retraining. A "flag" is a probability, not proof — false alarms could unfairly tar legitimate new coins, and the paper is about prediction, not a deployed consumer product. It also can't stop the fraud, only warn about it, and only for the coins and platforms it was trained on.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A machine-learning early-warning system that spots likely crypto "rug pull" scams on Solana from just their first five minutes of trading — before most investors lose their money.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
