@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of August 30, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.27456v1" style="color:#1a1a2e;text-decoration:none;">UrbanGround: From Local Perception to Spatial Agency in a Real-Scale City</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Tianjie Ju, Zheng Wu, Yueqing Sun, Yuhan Cui, Bobo Li
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.27456v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.27456v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>We want AI assistants that can actually get around in the real world, not just describe a photo of a street. Imagine an AI that could guide a delivery robot or a visually impaired person through a busy city to a destination it has never been to. The catch is that recognizing what is in a single snapshot is very different from staying oriented and making good decisions while you keep moving through blocks of a real city.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a detailed video-game-like replica of Hong Kong, constructed from real city-wide 3D mapping data, and dropped AI agents into it to walk around from a first-person point of view, the same way you would explore a place in a driving or walking video game. They call this testing ground UrbanGround. The AI models under test are of the kind that can look at an image and read and write text about it, so the agent literally sees the street ahead and has to decide where to go next, step by step, checking its progress against a map. Think of it like handing a smart tourist a phone with a camera and a map and asking them to reach an address across town: the researchers watch whether the tourist can read the scene, keep facing the right way, dodge pedestrians, and actually arrive. They tested this in three escalating stages, from answering questions about the immediate scene, to reaching destinations that get farther away and more vaguely described, to coping when roads are blocked or crowds are moving.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Today's AI agents handle the easy, small-scale pieces reasonably well: they can recognize objects in a street scene and reason about nearby space over short distances.</li>
+<li style="margin-bottom:6px;">They struggle badly with orientation, meaning they lose track of which way they are facing, and with moving sensibly around pedestrians.</li>
+<li style="margin-bottom:6px;">The biggest failure showed up over long journeys: the small skills that work in isolation do not add up into steady, goal-directed travel. Errors pile up and the agent has no reliable way to notice a mistake and correct course.</li>
+<li style="margin-bottom:6px;">In short, being good at the snapshot does not translate into being good at the trip, and the gap widens the longer the agent explores.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is a reality check for the popular idea that we are close to AI agents that can navigate the physical world on their own. It shows the hard part is not perception in the moment but sustained, self-correcting behavior over time and distance. By giving everyone a shared, realistic city to test in, it lets the whole field measure progress on the thing that actually matters for robots, navigation aids, and delivery systems.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a simulation of one city, however detailed, so success here would still need to be proven on real streets with real weather, traffic, and sensor noise. The paper mainly diagnoses where current agents break rather than fixing the problem, so it is a well-designed thermometer, not a cure. Real-world use would require agents that can hold a stable sense of direction and catch their own errors, which today's models clearly cannot do yet.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Today's AI can read a street scene but still gets hopelessly lost trying to actually walk across a city, and this Hong Kong simulator proves exactly where it falls apart.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.27454v1" style="color:#1a1a2e;text-decoration:none;">WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.27454v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.27454v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>When an AI assistant figures out a clever way to do a task, that hard-won lesson usually evaporates the moment the task ends. Companies want AI agents that get better with experience the way a good employee does, building up a playbook of what works. The real-world payoff is an assistant that does not keep relearning the same lessons and can pass its know-how to teammates.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a system called WikiSkill that gives an AI agent something like a company wiki it writes for itself. As the agent works through tasks, it does three things separately: it keeps the raw record of what it actually did, it distills that into general lessons and notes stored in the wiki, and it turns the most useful lessons into ready-to-use skills, which are packaged step-by-step procedures the agent can grab next time. The key idea is keeping these three layers apart instead of mashing them together, and continuously folding new experience back into the wiki so that each new skill is built on top of everything learned before, not from scratch. Picture a new hire who not only does the job but also updates the team handbook every night, so that next week's version of themselves, and their coworkers, start from a smarter baseline. Crucially, that written-down knowledge is what makes each round of improvement stick and compound.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Across a range of standard tests and several different underlying AI models, WikiSkill consistently beat the best existing methods for letting agents learn skills from experience.</li>
+<li style="margin-bottom:6px;">Bigger, more capable AI models got even more benefit from the evolved skills, and, strikingly, a smaller model equipped with these skills could outperform a much larger model that had none.</li>
+<li style="margin-bottom:6px;">The skills transferred between different models and even different model families, and skills written by one model sometimes worked better than the skills a model had developed for itself.</li>
+<li style="margin-bottom:6px;">Turning off the persistent wiki caused performance to drop, confirming that the written, accumulated knowledge, not just trial and error, was doing the heavy lifting.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This points toward AI systems that improve through use rather than only through expensive retraining, and whose lessons can be shared like documents. That could let organizations run smaller, cheaper models that punch above their weight because they carry a good playbook, and it hints at a future where a library of transferable AI skills becomes a valuable asset in its own right.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The gains are measured on benchmark tasks, so we do not yet know how well the approach holds up on messy, open-ended real work where the right lesson is harder to define. A self-written knowledge base can also accumulate wrong or outdated advice, and the paper does not fully address how to keep the wiki from drifting into confident nonsense over time. Real deployment would need guardrails to audit and prune what the agent chooses to remember.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An AI that keeps its own growing handbook gets reliably smarter with experience, and a small model with a good handbook can beat a big one without one.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.27449v1" style="color:#1a1a2e;text-decoration:none;">SWE-Prime: Fewer Trajectories, Better Performance</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Dewu Zheng, Ruizhe Ye, Yanlin Wang, Yang Ye, Hongyu Zhang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.27449v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.27449v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Companies are training AI models to fix real software bugs by showing them thousands of examples of past successful fixes. The hidden problem is that just because a fix worked does not mean it was done well, the same way a project can succeed despite messy, wasteful, or risky steps along the way. If the AI learns from those sloppy successes, it picks up bad habits.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a filtering system called SWE-Prime that acts like a demanding editor going over a pile of worked examples before the AI is allowed to learn from them. It works in two passes. First, it looks at each complete example of an AI fixing a bug and throws out the ones that are low quality, redundant, or unrepresentative, keeping only a clean, well-rounded subset. Second, it zooms in within the surviving examples and breaks each one into meaningful chunks of consecutive steps, then judges each chunk on whether it actually helped solve the problem, whether it is a good thing to learn, and whether it teaches anything risky. The clever twist is that during training the AI still reads the whole example for context, but only the chunks that passed the review are treated as lessons to imitate. It is like letting a trainee watch the entire recording of an expert at work but telling them plainly which moments to copy and which to ignore.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Training on just the top 10 percent of examples selected by SWE-Prime beat training on the entire pile of successful examples.</li>
+<li style="margin-bottom:6px;">On one industry benchmark of real software issues the relative improvement was up to about 12 percent, and on another it reached up to about 24 percent.</li>
+<li style="margin-bottom:6px;">The headline surprise is that less data produced better results, overturning the usual assumption that more training examples are always better.</li>
+<li style="margin-bottom:6px;">Preserving the full example for context while only learning from the vetted parts was central to the gains.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This suggests a cheaper and better path to AI coding assistants: curate quality instead of piling up quantity. For the many teams racing to build AI that can resolve software tickets, it means smaller, cleaner training sets can cut costs and yield models that write more disciplined fixes, which matters when the code will run in production.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The quality judgments themselves are made automatically, so the whole approach is only as good as those automated referees, and it is not obvious they will agree with expert human taste in every case. The results are shown on two benchmarks in one domain, software bug fixing, so it remains to be seen whether the same filtering wins elsewhere. Real adoption would also require confidence that the filter is not quietly discarding rare but important edge cases.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>Feeding an AI a small set of carefully vetted examples teaches it to fix software better than drowning it in every success, so quality beats quantity.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.27442v1" style="color:#1a1a2e;text-decoration:none;">From Static to Dynamic: Benchmarking Real-World Code Review with MCR-Bench</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Dewu Zheng, Yanlin Wang, Xiwen Wang, Kefeng Duan, Hongyu Zhang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.27442v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.27442v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Before new code ships, a human reviewer usually reads it and asks for changes, and the author revises, often over several back-and-forth rounds. This review process is one of the slowest, most expensive parts of building software, so there is huge interest in having AI help. The trouble is that most attempts treat review as a single yes-or-no judgment, which is nothing like the real, multi-round conversation where a problem is spotted, partly fixed, re-checked, and tracked until it is truly gone.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a realistic test, called MCR-Bench, to measure how well AI models handle code review the way it actually happens, as an ongoing exchange rather than a one-shot verdict. They collected 2,269 real multi-round review cases across five popular programming languages and, importantly, labeled each one in fine detail: what the defect was, how serious it was, and how its status changed from round to round, for example still broken, fixed, or newly introduced. Think of it as grading an AI not on whether it can flag a problem once, but on whether it can act like a diligent reviewer who remembers what was wrong last time, checks whether the author actually fixed it, and keeps following the thread across a whole conversation. They then ran today's leading AI models through this gauntlet and studied not just their scores but the specific ways they failed.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">The leading models performed poorly overall at both catching defects and keeping track of a defect's status across rounds.</li>
+<li style="margin-bottom:6px;">Performance got noticeably worse as the number of back-and-forth rounds increased, meaning the AI lost the thread the longer the conversation went on.</li>
+<li style="margin-bottom:6px;">The models were uneven: they missed defects that were subtle in meaning or did not stand out, and their accuracy swung widely depending on the type and severity of the problem.</li>
+<li style="margin-bottom:6px;">Digging into the mistakes revealed two core weaknesses: the AI mismatched what was happening in one round versus another, and it struggled to remember information over long exchanges.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This reframes AI code review as a memory-and-tracking problem, not just a spot-the-bug problem, which is a more honest picture of the real job. By exposing exactly where models break down over multiple rounds, it gives builders a concrete target and a shared yardstick, and it warns teams not to trust current AI reviewers to follow an issue reliably from first flag to final fix.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>Like the other benchmarks here, this measures the problem rather than solving it, so it tells us AI reviewers are not ready but not how to make them ready. The findings depend on the quality of the human-created labels and the particular five languages chosen, which may not capture every review style. Real use would require models with far better long-conversation memory before they could be trusted to manage a review on their own.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>When code review becomes a multi-round conversation, today's AI reviewers lose track of what was fixed and what still is not, and this benchmark shows exactly how badly.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2608.27407v1" style="color:#1a1a2e;text-decoration:none;">Reconstructing Humans and Objects in Interaction using Large Reconstruction Models</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Agniv Chatterjee, Georgios Pavlakos
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2608.27407v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2608.27407v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Getting a computer to understand, in true 3D, how a person is interacting with an object, like someone sitting on a chair or lifting a box, is a long-standing hard problem in computer vision. It matters for augmented and virtual reality, for robots that need to grasp how people handle things, and for AI that acts in the physical world. The difficulty is that a flat photo hides depth, bodies and objects block parts of each other, and objects come in endless shapes.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a system called MILO that reconstructs a person and the object they are touching in 3D from just a single ordinary photo. Their trick is to lean on a newer class of AI tools, called large reconstruction models, that are already very good at turning one image into a rough 3D shape of whatever is in it. Instead of the traditional painstaking approach of guessing a 3D pose and nudging it until it matches the photo, MILO first lets one of these tools build a single combined 3D blob of the whole scene, which conveniently keeps the person and object in the right positions and distances relative to each other. Then MILO reads that blob like a rough sculpture: it slices it into the human part and the object part, fits a standard adjustable human-body model onto the person, and, when a template of the object exists, snaps that into place too. In plain terms, it gets a cheap rough 3D draft for free and then cleans it up, rather than building the 3D from nothing.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">MILO reconstructs detailed human-object interactions accurately from a single image.</li>
+<li style="margin-bottom:6px;">It outperformed existing leading methods across several standard tests and across different kinds of interactions.</li>
+<li style="margin-bottom:6px;">The core insight that paid off is that the rough 3D draft from a large reconstruction model already preserves how the person and object are arranged and how close they are, which is exactly the hard information to recover otherwise.</li>
+<li style="margin-bottom:6px;">The team released their code publicly, making the results easier for others to check and build on.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Reconstructing people-and-things in 3D from a plain photo, rather than requiring special depth cameras or multiple angles, lowers the cost of technology that needs to understand physical interaction. That helps AR and VR experiences feel grounded, and it gives robots and embodied AI a better sense of how humans handle the objects around them, which is foundational for machines that assist in the physical world.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The method works best when a template of the object is available, so genuinely unfamiliar objects remain harder to pin down precisely. It also inherits whatever mistakes the underlying rough-draft model makes, and a single photo still cannot see what is hidden behind an occlusion, so severe blockages will still cause errors. Moving from benchmark images to reliable performance on unpredictable real-world scenes is the remaining gap.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>MILO rebuilds a person and the object they are handling in 3D from one ordinary photo by cleaning up a free rough draft, beating older methods that had to build everything from scratch.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
