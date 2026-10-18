@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of October 18, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.22372v1" style="color:#1a1a2e;text-decoration:none;">LIBERO-PeRM: Benchmarking Personalized Robotic Manipulation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Zhixu Li, Keqian Tang, Litian Gong, Jingyu Yao, Wenqian Zhang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.22372v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.22372v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Imagine buying a home robot and finding it loads the dishwasher exactly like the showroom model — never the way <em>you</em> like it, with mugs facing a certain way or knives placed handle-up for safety. For robots to truly belong in our homes, they need to do more than finish a task; they need to do it <em>our</em> way. Today there is no good yardstick for measuring whether a robot respects personal preferences versus just getting the job done.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers built a standardized testing ground — think of it as an obstacle course, but for robot manners. They call it LIBERO-PeRM. Inside a simulated kitchen-like world they created 312 tasks, each in two versions: one where the robot just has to finish, and one where it must also honor a stated preference (like "pick up the cup by the handle" or "take the shorter path"). Crucially, they separate <em>did it finish</em> from <em>did it do it your way</em>, so each can be measured on its own. The preferences they chose span three everyday flavors: how the robot <em>moves</em> (which path, how fast), which <em>skill</em> it uses (slide a plate versus lift it), and <em>user-profile</em> choices (a left-handed owner, a safety-first household). To make the test fair and repeatable, a pipeline auto-generates matched pairs of demonstrations — the same task with and without the preference baked in. They then tested today's leading "vision-language-action" robot brains — AI systems that take a camera feed plus a spoken instruction and output movements — to see how well they pick up and stick to preferences.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Current robot AIs are <strong>poor at personalization out of the box</strong>: told a preference in plain language, they largely ignore it.</li>
+<li style="margin-bottom:6px;">Showing the robot a few <strong>demonstrations</strong> of the preferred behavior does make preferences learnable — so it is teachable, just not automatic.</li>
+<li style="margin-bottom:6px;"><strong>Mixing</strong> preference and non-preference training beats teaching them one after another: the robot forgets less of its baseline skill that way.</li>
+<li style="margin-bottom:6px;">But trade-offs appeared — the mixed approach can actually <strong>weaken</strong> the robot's grasp of *motion* preferences.</li>
+<li style="margin-bottom:6px;">The hardest parts stay unsolved: <strong>combining</strong> several preferences, <strong>generalizing</strong> one to new rooms and tasks, and handling <strong>conflicts</strong> between preferences.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This gives the whole field a shared, honest scoreboard for a question that has mostly been hand-waved: can robots adapt to individual people, not just the average person? Benchmarks like this tend to accelerate progress, because researchers can now compete on a concrete, comparable number instead of cherry-picked demos.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>It all runs in simulation, not on real hardware in messy real kitchens, and preferences are limited to ones you can state in words and check automatically. So it measures a clean slice of the problem, not the full chaos of a real home. Real-world use would need this to transfer to physical robots and to fuzzier, unspoken preferences.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A new scorecard shows today's home-robot AIs can learn your preferences from examples but cannot yet figure them out on their own.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.22371v1" style="color:#1a1a2e;text-decoration:none;">Gen4P: Video Generators are 4D Perceivers</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yitong Xia, Zeren Jiang, Chuanxia Zheng
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.22371v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.22371v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>When you take a single video on your phone, the footage is flat — just colors moving on a screen. A computer does not inherently know how far away things are, how the camera moved, or how objects traveled through 3D space over time. Recovering that "where is everything, and how is it moving" information from ordinary video is a long-standing hard problem, and it underpins robotics, augmented reality, and film effects.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>AI video <em>generators</em> — the systems that create realistic clips from a prompt — have, in learning to fake video convincingly, absorbed a deep intuition for how the 3D world looks and moves. The researchers' clever move: instead of using that intuition to <em>generate</em> video, they repurpose it to <em>understand</em> video. It is like hiring a master forger not to paint fakes but to authenticate real paintings, because they understand brushwork better than anyone. Their system, Gen4P, takes a pretrained video generator and bolts on a small, efficient "question-answering" layer: you point at a spot and a moment in the video and ask "where is this in 3D, and where is it going?" — and it answers in one quick pass, skipping the slow trial-and-error that generators normally need. A second trick lets you ask about <em>any</em> moment in time, not just the exact frames that were filmed, so the system can reason about motion smoothly between frames rather than in choppy snapshots.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Achieves <strong>state-of-the-art or competitive</strong> results on three standard tasks at once: tracking points in 3D, estimating depth throughout a video, and working out how the camera moved. Doing all three from one model is itself notable — these are usually handled by separate specialist systems.</li>
+<li style="margin-bottom:6px;">Runs in a <strong>single pass</strong> — no slow, iterative refinement — making it fast enough to be practical.</li>
+<li style="margin-bottom:6px;">A neat efficiency trick: it borrows an existing depth-expert module as a <strong>frozen "geometry hint"</strong> that boosts accuracy <strong>without adding anything new to train</strong>.</li>
+<li style="margin-bottom:6px;">Handles <strong>messy real-world videos</strong>, tracking complicated motion while keeping fine structure intact.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>This is strong evidence that the enormous investment in video-generation AI pays a second dividend: the same models can double as general-purpose 3D-vision engines. One model doing several perception jobs well is exactly what robots and AR glasses need — they cannot afford a separate specialized system for each. It also hints at a tidy virtuous cycle: every advance in video generation could automatically make video <em>understanding</em> better too, without starting from scratch.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>It leans on a large pretrained generator, so it inherits that model's size and compute appetite, and "competitive" means it does not beat every specialist on every metric. For production use on a phone or a robot's onboard chip, it would likely need slimming down.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A video-generating AI was flipped into a fast, all-in-one tool for understanding the 3D structure and motion inside ordinary video.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.22370v1" style="color:#1a1a2e;text-decoration:none;">Which Tokens to Merge? Diffusion Dynamics for Efficient Image Generation</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> SeungJu Cha, Ye-Chan Kim, HyunGee Kim, Sungho Koh, Dong-Jin Kim
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.22370v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.22370v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI image generators — the ones that turn a text prompt into a picture — are slow and expensive because they do an enormous amount of repetitive number-crunching for every image. One way to speed them up is to notice that many parts of an image are similar and can be processed together instead of separately. But merge the wrong parts and the picture comes out blurry or broken. The tricky question: which parts are safe to combine?</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Picture an image broken into thousands of little tiles (the field calls them "tokens"). Existing speed-up tricks decide which tiles to merge by asking "does the text prompt mention this?" — so if you asked for "a dog," the dog gets careful treatment and everything else gets lumped together. The problem: backgrounds and unmentioned details (a fence, the texture of grass) get mangled. The researchers' insight is to stop asking the prompt and instead watch the <em>generation process itself</em>. As the AI paints an image, it repeatedly refines a rough guess. Their method, DaTMe, watches two signals: which tiles have <strong>stopped changing</strong> (settled, safe to merge) and which carry <strong>sharp edges and fine detail</strong> (risky, keep separate). It merges only tiles that are both calm and plain — regardless of whether the prompt named them. The practical payoff is that a tree, a brick wall, or the folds in a jacket get protected just as carefully as the headline subject, because the method judges importance by what the image actually needs, not by what the words happened to mention.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Preserves <strong>visual quality across the whole image</strong>, including backgrounds and details that prompt-based methods wreck.</li>
+<li style="margin-bottom:6px;"><strong>Training-free</strong> — a drop-in trick that needs no retraining of the expensive underlying model.</li>
+<li style="margin-bottom:6px;">Demonstrated on two modern, widely used image generators (<strong>PixArt-α and FLUX</strong>), showing it is not a one-model fluke.</li>
+<li style="margin-bottom:6px;">Bases the merge decision on the model's own dynamics rather than an external guess, which is a more principled criterion.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Speed and cost are the main barriers to using image generation at scale — in design tools, games, and apps. A method that makes these models faster <em>without</em> degrading quality or requiring a costly retrain is the kind of practical win that gets adopted quickly and broadly. Because it is training-free, a company can bolt it onto a model they already run and pocket the savings on day one, rather than funding a multi-week, expensive retraining effort.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The paper shows quality is maintained, but the real selling point is efficiency; the exact speedup and how it trades against quality at aggressive compression are not front-and-center in the summary. It also targets image models specifically, and the gains depend on how much redundancy a given image actually contains.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A no-retraining trick makes AI image generators faster by watching the painting process to decide what to simplify — keeping backgrounds and fine details sharp.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.22369v1" style="color:#1a1a2e;text-decoration:none;">SoftCache: Adaptive Step Size Caching for Diffusion Transformers</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Shimon Malnick, Nadav Orenstein, Ohad Fried, Shai Avidan
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.22369v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.22369v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI image and video generators build their output step by step, and each step runs the entire giant model once — that is what makes them slow and costly. A known shortcut is "caching": reuse the last step's heavy computation instead of redoing it. But current caching is all-or-nothing — either recompute fully or copy the old answer — which leaves speed on the table.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Think of generating an image as a road trip with many planned stops, where each stop requires expensive, full work. Existing caching keeps a cheap "how stale is my information" gauge and, when it crosses a line, forces a full stop; otherwise it coasts one fixed step. The researchers noticed the gauge is not just a yes/no light — <em>how far</em> it sits from the staleness line tells you how much error you would introduce by coasting. Their method, SoftCache, uses that margin to decide <strong>how big a jump to take</strong>: when the information is very fresh it leaps past several planned stops at once, and as staleness builds toward a needed refresh its jumps shrink back to normal. In effect it drives fast on the clear stretches and slows down near the hazards, instead of treating every stretch the same. The elegant part is that it reuses a number the system was already computing — nothing extra has to be measured — so the smarter behavior comes essentially for free.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Speedups of <strong>3.5× to 6.9×</strong> on real systems.</li>
+<li style="margin-bottom:6px;">Beats <strong>every baseline on all four quality metrics</strong> — so it is faster *and* higher-fidelity, not a quality-for-speed trade.</li>
+<li style="margin-bottom:6px;">Works across <strong>images (FLUX) and video (HunyuanVideo, Wan2.1)</strong> — a broad, convincing spread.</li>
+<li style="margin-bottom:6px;"><strong>No training and no per-model tuning</strong> required — a clean drop-in.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>A 3.5–6.9× speedup with no quality loss and no retraining directly cuts the compute bill and the wait time for generative media. That is the kind of near-free improvement that gets adopted immediately across many products, and it stacks on top of today's models rather than replacing them.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>The jumps can land "between" the model's intended steps, going off the planned grid — the authors show this works well in practice, but it is a heuristic that could behave unpredictably on model types they did not test. Results cover a handful of popular models; the exact speedup will vary by workload and by how strict your quality bar is. And while the method needs no tuning, it only helps systems that already use the step-by-step generation approach it is built around, so it is an accelerator for one dominant style of model rather than a universal fix.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A smart "coast fast when safe, slow down near trouble" trick makes image and video generators up to 7× faster with no loss in quality and no retraining.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.22368v1" style="color:#1a1a2e;text-decoration:none;">Value as Memory: Online Value-Guided Post-training for General Robot Policies</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Wenye Yu, Yijin Chen, Kaiyi Xiong, Wenbo Han, Wendi Chen
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.22368v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.22368v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>A general-purpose robot trained in the lab often stumbles in the real world for two reasons: it cannot see everything it needs (a towel might hide what is underneath), and it only learns from old, pre-collected data — so it never improves from the mistakes it makes while actually working. We want robots that keep getting better on the job, the way a new employee does in their first weeks.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Two ideas combined. First, "value as memory": the robot keeps a running sense of <em>how well the task is going</em> — a progress score — and uses that recent score as a kind of short-term memory to inform its next move. It is like a cook who, even without re-checking every pot, carries a feel for "the meal is 70% done, so now I should…" That helps when the robot cannot directly see everything. Second, instead of only learning from old recordings, the robot learns <strong>online, while deployed</strong>, blending three sources: the original demonstrations, moments where a human stepped in to correct it, and its own fresh attempts. This lets it adapt on the fly, even when success is only occasionally rewarded. A standout practical detail: the robot trains <em>while</em> it gathers new experience, rather than stopping to collect a batch and then learning from it, which keeps the whole improvement loop moving quickly.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">The progress-memory idea alone gave a <strong>29.4%</strong> average jump in success rate.</li>
+<li style="margin-bottom:6px;">Learning online during deployment added a <strong>32.8%</strong> gain over equivalent old-data-only training.</li>
+<li style="margin-bottom:6px;">The online schedule squeezed out <strong>8× more learning updates</strong> for the same compute budget.</li>
+<li style="margin-bottom:6px;">It ran over <strong>2× faster per update</strong> by collecting data and training at the same time.</li>
+<li style="margin-bottom:6px;">Tested on genuinely hard jobs: <strong>floppy objects</strong> like cloth, and <strong>contact-heavy manipulation</strong>, both notoriously difficult.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>The holy grail for practical robots is continual, autonomous improvement in the real world rather than a frozen skill set shipped from the factory. Large gains from learning-while-working — on exactly the deformable and contact-rich tasks that trip robots up — point toward robots that grow more reliable the longer they are deployed.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>It still leans on human interventions and demonstrations to get started, so it is not fully hands-off — a person has to supervise and occasionally take the controls, which limits how cheaply it can scale. The results also come from specific task setups rather than a broad proof across every environment. Scaling this safely — letting a robot experiment in a real home or factory without costly or dangerous mistakes while it learns — remains the open challenge.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A robot that keeps a running "how is it going" score and learns from its own on-the-job attempts improved its success rate by about a third over the standard train-then-freeze approach.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
