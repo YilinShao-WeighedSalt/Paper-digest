@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <h1 style="color:#1a1a2e;font-size:28px;margin:0 0 8px;">Weekly Research Digest</h1>
+        <p style="color:#888;font-size:15px;margin:0;">Week of October 25, 2026 &bull; 5 papers</p>
+        <p style="color:#aaa;font-size:13px;margin:8px 0 0;">Top papers in AI, Robotics & Embedded Systems</p>
+    </div>
+    <div style="background:#e8f4f8;border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#2c6e7e;">
+        <strong>This week's highlights:</strong> 5 papers from top venues, analyzed and summarized for quick reading. Each report is written to be understood without specialized knowledge.
+    </div>
+    
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #1</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.31671v1" style="color:#1a1a2e;text-decoration:none;">A Unified Framework for Image-to-3D Part Generation via Variable Granularity</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Qiwen Gu, Xin Zhou, Xiwu Chen, Zhongyang Zhu, Zhuo Zhang
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.31671v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.31671v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Anyone who makes 3D content — video-game artists, product designers, animators — often needs to turn a flat picture into a 3D model, and crucially, one that is built out of separate, editable <em>parts</em> (a chair's legs, seat, and back as distinct pieces) rather than one fused blob. The catch is that different people want to give the computer different amounts of guidance: a hobbyist might just click a few dots, while a professional might draw precise boxes or outlines. Today's tools each expect one specific kind of guidance, so you end up juggling several tools for one job.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The authors built a single system, called FlexPart, that is happy to accept whatever level of instruction you feel like giving it. Think of it like a good assistant who can work from a rough sketch on a napkin <em>or</em> from detailed blueprints, and does a good job either way. The three "levels of instruction" are: a few scattered points (loosest), bounding boxes that say roughly where each part lives, and precise masks that trace each part's outline (tightest). FlexPart uses a technique they call "gated adaptive modulation," which is essentially a smart switchboard: depending on what kind of hint you provide, it dials up or down which internal machinery it leans on, so one model handles all cases instead of three separate models. They also added an "asymmetric geometric guidance" trick — in plain terms, the system learns from its own high-detail interpretations to clean up its low-detail ones, so loose instructions still produce coherent shapes. Because all three input styles share one brain, improvements in one feed the others.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Under the most precise guidance (masks) on a standard benchmark called PartVerseXL, FlexPart cut its main geometric error measure ("Part CD" — roughly, how far the generated parts stray from the correct shape) by <strong>16.6%</strong> compared with a leading combo (TripoSG + SAM3D) and by <strong>10.5%</strong> versus another recent method (OmniPart).</li>
+<li style="margin-bottom:6px;">It did this while keeping the overall finished object's quality competitive — so the gains in part accuracy didn't come at the cost of a worse whole model.</li>
+<li style="margin-bottom:6px;">The notable surprise is that one unified model matched or beat specialized ones; usually a jack-of-all-trades underperforms the specialists.</li>
+<li style="margin-bottom:6px;">The code is publicly released, which makes the claims easier for others to check and build on.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>3D asset creation is a bottleneck for games, film, e-commerce product views, and the "digital twins" used in simulation and robotics training. A tool that meets users wherever they are — rough or precise — lowers the skill barrier and speeds up pipelines. If a single flexible model becomes the norm, studios maintain less software and can mix workflows freely.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a preprint with zero citations so far and no independent verification; the improvements, while real, are incremental percentage gains on a research benchmark, not a leap. It generates parts from a single image, so it still can't invent detail it never saw (the back of an object, hidden interiors) with certainty, and benchmark quality doesn't always translate to production-ready, watertight meshes an artist can use untouched.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>One flexible AI that turns a photo into editable 3D parts from either a rough hint or a precise one, beating specialized tools at their own game.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #2</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.31670v1" style="color:#1a1a2e;text-decoration:none;">Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Yunfei Xie, Howard H. Qian, Shiyi Lan, Kaiyu Hang, Chen Wei
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.31670v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.31670v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Before a company trusts an AI to control a real robot, it has to test it — and the gold-standard test is letting the robot physically attempt tasks over and over, which is slow, expensive, and risks breaking hardware. Worse, you often have dozens of candidate AI models and no cheap way to guess which ones are worth the costly physical trials. Imagine interviewing 50 job candidates by giving each a full week-long work trial; you'd kill for a quick screening test that tells you who's promising.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The researchers propose exactly that screening test, called Sensorimotor Alignment (shortened to S², read "S-squared"). The idea rests on a recent hypothesis that as AI models get smarter, their internal "mental pictures" of the world — whether built from images or words — start to line up with each other, as if converging on one true picture of reality. The authors ask: does physical <em>motion</em> count as another such picture? Their bet is that a genuinely capable robot-AI should have an internal representation that mirrors the actual geometry of how things move. S² measures how closely a model's internal sense of what it's seeing matches the structure of real physical motion — and it does this <em>offline</em>, without running the robot at all and without any additional training. It's like judging a chef's talent by how well their mental map of flavors matches reality, before you ever taste a dish.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">S² scores correlated positively with how often robots actually succeeded at tasks, across several different families of robot-AI models — meaning the cheap offline number tracks the expensive real-world outcome.</li>
+<li style="margin-bottom:6px;">It can flag promising vision-language model "backbones" (the general-purpose AI brains later adapted for robots) *before* the costly fine-tuning step, saving effort earlier in the pipeline.</li>
+<li style="margin-bottom:6px;">Beyond just predicting success, S² offered explanations for puzzling behaviors seen in robot-action models — a diagnostic, not just a score.</li>
+<li style="margin-bottom:6px;">It requires no training and no robot rollouts, so it's genuinely cheap to compute.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>If this holds up, teams building robot AIs could triage their candidates in minutes instead of weeks, spending their limited physical-testing budget only on the models most likely to pay off. That accelerates the whole field of "embodied AI" and makes research accessible to labs without giant robot fleets. It also hints at something deeper: that competence in a robot shows up as a measurable fingerprint inside the model, not just in its outward success rate, which could guide how we design and debug these systems in the first place.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is an unreviewed preprint, and the central claim is a <em>correlation</em> — S² tends to track success, but the paper doesn't promise it's reliable enough to replace real testing, and correlations can break down on model types it wasn't checked against. It's a prioritization aid, not a verdict; you'd still need physical trials before trusting a robot, and how well it generalizes to new robots and tasks remains to be independently confirmed.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A quick, training-free score that predicts which robot-AI models are worth expensive real-world testing, potentially saving labs weeks of trial-and-error.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #3</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.31668v1" style="color:#1a1a2e;text-decoration:none;">Reading, Writing, Sharing, and Interacting with the World through Video</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Shengqiong Wu, Meng Luo, Bobo Li, Ziwei Liu, Shuicheng Yan
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.31668v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.31668v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>AI can now both understand video (describe what's happening) and generate video (create new clips from a prompt). But these two abilities have grown up in separate research camps with separate vocabularies, making the field hard to navigate — and raising a deeper question: does an AI that produces a convincing video actually <em>understand</em> the physical world it's depicting, or is it just stitching together plausible-looking pixels? For a non-expert, the stakes are concrete: we're heading toward AIs that plan actions by imagining consequences (self-driving cars, household robots), and that only works if their imagined videos obey real physics.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>This paper is a survey — not a new invention, but a map of a sprawling, fast-moving territory, which is valuable precisely because the area is so confusing. The authors propose one unifying lens: treat any video as a lossy, partial glimpse of a hidden underlying "world," and then sort all the research into four plain-English verbs. <em>Reading</em> is figuring out facts about the world from a video you're shown. <em>Writing</em> is generating a video from a description or goal. <em>Sharing</em> is building systems that do both understanding and generation with the same underlying machinery. <em>Interacting</em> is the most ambitious: predicting how the world will change in response to actions, then updating as new observations arrive — essentially the AI running a mental simulator it can act within. The clever distinction they draw is between a video merely <em>looking</em> smooth frame-to-frame versus the world it depicts actually staying <em>logically consistent</em> (objects don't vanish, physics holds).</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">The main contribution is organizational clarity: four operations (read/write/share/interact) that let readers place any paper on a single map, across tasks, datasets, and benchmarks.</li>
+<li style="margin-bottom:6px;">It documents a field-wide shift in what researchers value: away from "does this clip look realistic?" and toward "does this maintain a persistent, physically and causally valid world state?"</li>
+<li style="margin-bottom:6px;">It catalogs the datasets and evaluation benchmarks used, and highlights that evaluation is moving toward grounding in actual interaction and downstream decisions rather than surface appearance.</li>
+<li style="margin-bottom:6px;">It distills the open problems that follow from this framing — a to-do list for the field.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>"World models" — AIs that carry an internal, updatable model of reality — are widely seen as a key step toward machines that can plan and act reliably. A shared vocabulary helps researchers, funders, and newcomers talk to each other and spot gaps, which tends to speed up progress. For anyone tracking where AI is headed, this is a readable orientation to one of its most important frontiers.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>A survey summarizes and frames; it doesn't prove anything new or benchmark methods head-to-head, so its value is in perspective rather than hard results. Framings are also opinions — the four-verb scheme is one useful way to carve up the field, not the only one — and because the area moves monthly, parts of any survey date quickly.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A clear map of the booming "AI that understands and imagines video" field, framed around whether machines truly model the world or just render pretty pixels.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #3498db;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#3498db;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">AI/ML</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #4</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.31667v1" style="color:#1a1a2e;text-decoration:none;">Direct Pass@$k$ Optimization for Thought Pruning: Balancing Quality and Diversity in Test-Time Reasoning</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Mahdi Salmani, Adel Javanmard, Devansh Gupta, Meisam Razaviyayn
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.31667v1" style="color:#3498db;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.31667v1" style="color:#3498db;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Modern reasoning AIs often solve hard problems by brute force: generate many candidate solutions and hope at least one is right. That's expensive — like hiring 100 people to each write a full essay when you only need one good one. To save money, systems let all candidates write just the first paragraph, then cut most of them and only let the survivors finish. The hard question is <em>which</em> ones to keep, and existing methods each get it half-right.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>Existing pruning comes in two flavors that pull in opposite directions. "Quality" methods keep the candidates that look most promising so far — but if all the promising ones are making the <em>same</em> mistake, you've wasted your picks. "Diversity" methods keep candidates that are tackling the problem in different ways — but some of those different approaches are just different ways of being wrong. This is the classic explore-versus-exploit dilemma. The authors' insight is to stop treating quality and diversity as two separate knobs to tune by hand, and instead optimize the thing you <em>actually</em> care about directly: the probability that <em>at least one</em> of the candidates you keep will finish with the correct answer (a measure called "pass@k"). Picture choosing a small team where you don't need everyone to be the single best person — you need the group, as a whole, to be very likely to contain a winner. That goal automatically rewards strong candidates <em>and</em> penalizes keeping near-duplicates, so the quality/diversity balance falls out of the math rather than from fiddly manual settings.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">Tested on eight different open-weight reasoning models, the method beat both the quality-only and diversity-only pruning strategies.</li>
+<li style="margin-bottom:6px;">The advantage was largest when keeping a *moderate* number of candidates — the regime where the quality-vs-diversity tension actually bites, which is a sensible and reassuring place to see the biggest win.</li>
+<li style="margin-bottom:6px;">Because the single objective handles the trade-off, there are fewer ad-hoc dials to tune, making it cleaner to deploy.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Running these "think of many answers" systems is a major and growing cost in deploying AI reasoning. Squeezing more correct answers out of the same compute budget directly lowers the price and energy of AI, and does so with a principled method rather than hand-tuned heuristics — the kind of clean idea that tends to get adopted and built upon. For a business paying per query, better pruning is money saved on every single request, which adds up fast at scale.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is an unreviewed preprint, and it's an efficiency technique, not a reasoning breakthrough — it helps you spend a fixed budget better, not make the model fundamentally smarter. The gains depend on the setting (they shrink when you keep very few or very many candidates), and all tests were on open-weight models, so it's unconfirmed whether the advantage holds on the largest proprietary systems.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>A smarter way to decide which half-finished AI "thoughts" to keep, squeezing more correct answers out of the same compute by optimizing the real goal directly.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:28px;margin-bottom:24px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="margin-bottom:8px;">
+                <span style="background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">ROBOTICS</span>
+                <span style="color:#888;font-size:13px;margin-left:12px;">Paper #5</span>
+            </div>
+            <h2 style="color:#1a1a2e;margin:12px 0 8px;font-size:20px;line-height:1.3;">
+                <a href="https://arxiv.org/abs/2610.31661v1" style="color:#1a1a2e;text-decoration:none;">OpenTac: An Open Ecosystem for Customizable, Scalable, and Transferable 3D Tactile Sensing</a>
+            </h2>
+            <p style="color:#666;font-size:14px;margin:0 0 4px;">
+                <strong>Authors:</strong> Ariel Slepyan, Geeta Chandra Raju Bethala, Jiafeng Gu, Anagha Rajendra Dangle, Yinzhe Zhou
+            </p>
+            <p style="color:#666;font-size:14px;margin:0 0 16px;">
+                <strong>Venue:</strong> arXiv Preprint (2026) &nbsp;|&nbsp;
+                <strong>Citations:</strong> 0 &nbsp;|&nbsp;
+                <a href="https://arxiv.org/abs/2610.31661v1" style="color:#e74c3c;">Read Paper</a> &nbsp;|&nbsp; <a href="https://arxiv.org/pdf/2610.31661v1" style="color:#e74c3c;">PDF</a>
+            </p>
+            <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+            <div style="color:#333;font-size:15px;line-height:1.7;">
+                <h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">The Problem</h3>
+<p style='margin:8px 0;'>Robots are great at seeing but clumsy at touching. Giving a robot a sense of touch — pressure and shear (sideways slipping) across a surface — is what lets it do delicate, contact-heavy jobs like plugging in a cable, handling fruit without bruising it, or keeping a grip on a slipping object. But touch sensors today are expensive, one-size-fits-all, and hard to adapt to the many odd shapes robots come in, so the technology stays stuck in labs.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">What They Did</h3>
+<p style='margin:8px 0;'>The team built OpenTac, which is two things: a new kind of low-cost "electronic skin," and an entire open toolkit around it. The skin uses a textured, squishy top layer that, when something pushes or drags across it, redistributes the pressure so the sensor can read not just how hard you press (normal force) but which way things are sliding (shear) — by comparing the signals from neighboring sensing points, nicknamed "taxels" (touch-pixels). The more striking contribution is the design tool: you give it a 2D outline or a 3D surface — or even just a plain-English request like "design a sensor for a size 9 shoe insole" — and it automatically spits out the files needed to fabricate a custom sensor for that exact shape. Around this they added a simulator, a way to transfer skills learned on one sensor to another, and a fast data-reading scheme. Think of it as going from "buy one fixed-size glove" to "describe any body part and we'll print a fitted glove, plus all the software to use it."</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Key Results</h3>
+<ul style="margin:8px 0;padding-left:20px;">
+<li style="margin-bottom:6px;">They designed and fabricated <strong>more than 30 different sensors</strong> across a variety of robot bodies, showing the design tool genuinely generalizes rather than working for one demo.</li>
+<li style="margin-bottom:6px;">They verified OpenTac's 3D touch readings against a commercial high-precision force/torque instrument — an independent accuracy check.</li>
+<li style="margin-bottom:6px;">They demonstrated it working on <strong>four real-world robot platforms</strong> for both feedback control and learning manipulation skills.</li>
+<li style="margin-bottom:6px;">A clever "adaptive" reading mode achieved <strong>kilohertz-rate</strong> partial readouts — sampling only the taxels that matter — running <strong>19.2× faster</strong> than scanning the whole array, on a 1,024-taxel skin.</li>
+<li style="margin-bottom:6px;">Everything (hardware, software, videos) is released openly.</li>
+</ul>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Why This Matters</h3>
+<p style='margin:8px 0;'>Open, customizable, cheap touch sensing could do for robot touch what open cameras did for robot vision: unlock a wave of research and products, especially in dexterous manipulation, prosthetics, and any task where sight alone isn't enough. Lowering cost and letting anyone fit a sensor to any shape removes a real barrier for smaller labs and startups.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Limitations & Honest Take</h3>
+<p style='margin:8px 0;'>This is a preprint, and the resistive sensing approach it uses can drift or wear over time and is generally less rich than some pricier optical touch sensors, so durability and fine-detail resolution in long real-world use are open questions. Demonstrations on four robots are promising but not the same as proven reliability at scale, and "open ecosystem" only pays off if a community actually forms around it.</p>
+<h3 style="color:#2c3e50;font-size:16px;margin:20px 0 8px;border-bottom:1px solid #eee;padding-bottom:4px;">Bottom Line</h3>
+<p style='margin:8px 0;'>An open, low-cost "electronic skin" you can auto-design for any robot shape — even from a text description — giving robots a practical sense of touch.</p>
+            </div>
+        </div>
+    <div style="text-align:center;padding:24px 0;color:#aaa;font-size:12px;">
+        <p>Generated by Paper Digest &bull; Powered by Claude</p>
+    </div>
+</div>
+</body></html>
